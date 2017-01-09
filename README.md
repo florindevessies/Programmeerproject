@@ -14,9 +14,9 @@ These visualizations will all be made using D3 in javascript. The data will be f
 
 Things I’d might include:
 -	Co2:
-o	CO2 admissions per country
-o	People living in cities and rural areas
-o	Fossil fuel energy consumption (% of total)
-o	Renewable energy consumption
-o	Use and production of energy 
+* CO2 admissions per country
+* People living in cities and rural areas
+* Fossil fuel energy consumption (% of total)
+* Renewable energy consumption
+* Use and production of energy 
 
