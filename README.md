@@ -1,2 +1,2 @@
 # Programmeerproject
-Data visualisation in the project of the fulltime programming minor
+Data visualisation by Florinde Vessies in the programming project
