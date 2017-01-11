@@ -5,7 +5,7 @@ All data will be gathered from [worldbank.org](http://databank.worldbank.org/dat
 ### Visualization 1 - Scatterplot
 To start with, a scatterplot will be shown where the CO2 emissions of countries is places against the urbanization on the x axis. All countries will be shown over here for one year. By clicking on a dot, a country can be selected. In the visualization below, The United States are selected. Using a hover over, the name of the country plus the urbanization and CO2 emissions will be shown. When a dot gets clicked, this country will light up in the worldmap and sunburst as well.  
 
-![Image world map ](https://github.com/florindevessies/Programmeerproject/tree/master/doc/worldmapscatterplot.jpg)
+![Image world map ](/doc/worldmapscatterplot.jpg)
 
 ### Visualisation 2 - The worldmap
 The world map will show the CO2 emissions per country in metric tons per capita. The map will be coloured according to this information.  Since the information about CO2 emissions is usually not available for the recent years (2014 to 2016), the default map will show the year 2013. The user can scroll backwards into time to see the emissions of the preceeding years. The scatterplot will change based on the years as well. 
@@ -21,7 +21,7 @@ The sunburst will show the sources of the emissions per country. Not all countri
 
 These consist of percentages and are therefore easy to use in the sunburst. 
 
-![Image total](https://github.com/florindevessies/Programmeerproject/tree/master/doc/complete.jpg)
+![Image total]/doc/complete.jpg)
 
 
 ### Interactive components
@@ -103,5 +103,17 @@ var worldmap = [{
 	}
 }]
 
+The time slider will handle the data in the same format. In python it will be changed using a function called AddDataToDict(). 
+
 #### Dealing with missing data
-Since not all data is available for each country, I'd like
+Since not all data is available for each country, I will provide a 'no data' message everytime this happens. However, this might be difficult in the sunburst. My main focus will thus lie on the scatterplot, piechart and worldmap. 
+
+#### Functions needed
+In order to make al the visualizations, I'll need functions to shorten my code. Functions will be:
+
+* drawScatterplot()
+* drawPiechart()
+* drawMap()
+* drawSunburst()
+
+They all need the data as an argument, but they might also need a countryID (in the cse of the piechart and sunburst).
