@@ -7,4 +7,6 @@ The first option was to visualize the school enrolment of children per country o
 When inspecting the chosen data, I figured that the energy will not be that interesting. Instead, I will show the urbanization of people in the countries, as this is denoted as an influential factor in rising CO2 emission levels in literature.  The sunburst and worldmap will remain, only the third visualization willl probably change. 
 
 ### Day 3, wednesday 11-01-2017
-I'm going to form a JSON file and decide which functions I'll write.
+After the group meeting, I figured that I'm not entirely showing with my data what I'd like to show. Now I'm going to make a scatterplot with a linked pie chart and worldmap with a slider. That will be my MVP; but a sunburst as an add on would be really cool so I hope I'll be able to make that too. 
+
+### Day 4, thursday 12-01-2017
