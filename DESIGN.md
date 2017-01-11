@@ -21,7 +21,7 @@ The sunburst will show the sources of the emissions per country. Not all countri
 
 These consist of percentages and are therefore easy to use in the sunburst. 
 
-![Image total]/doc/complete.jpg)
+![Image total](/doc/complete.jpg)
 
 
 ### Interactive components
