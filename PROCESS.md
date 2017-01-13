@@ -12,3 +12,8 @@ After the group meeting, I figured that I'm not entirely showing with my data wh
 ### Day 4, thursday 12-01-2017
 Today I'll make my JSONfile, update the readme.md so I can use it in the presentation tomorrow and I'll make the javascript, css and HTML pages.
 I'm still considering the sizes of the fillkeys; at first I thought of steps of 5 metric tons per capita, but in that case 140 countries will lie in the smallest group. This is not very informative on a map, so I'm considering to change these sizes but I don't know yet what will fit. 
+
+I'm considering to make a fillKey based on the standard deviations of a normal distribution. I'm hoping this will work with python. First I've to take all the data available for the CO2 emissions per capita and than I'll group the data based on the first standard deviation left and right, the second and the third for both sides. 
+
+### Day 5, friday 13-01-2017
+To make it to the deadline, I'm learning bootstrap to create a nice layout of my webpage. 

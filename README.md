@@ -2,7 +2,7 @@
 #Data visualisation by Florinde Vessies, 10657738
 
 
-In this visualization, data will be presented based on the CO2 emissions per country over several years. For the user it will be visible what kind of energy sources these countries have used, but also how these countries try to limit their emissions; if a country produces renewable energy this will be visualized as well. As an extra point, it is also known how many inhabitants a country has and how many of the people live in cities or on the countryside.
+In this visualization, data will be presented based on the CO2 emissions per country over several years. For the user it will be visible what that CO2 percentages were spend on, varying from transport to electricity. In another visualization it is shown how many people live in cities or in the rural areas per country. 
  
 All data will be gathered from [worldbank.org](http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators#). For each country, several indicators are chosen. In each of the different visualizations, different types of information are shown.
 
