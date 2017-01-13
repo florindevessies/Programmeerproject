@@ -16,4 +16,8 @@ I'm still considering the sizes of the fillkeys; at first I thought of steps of 
 I'm considering to make a fillKey based on the standard deviations of a normal distribution. I'm hoping this will work with python. First I've to take all the data available for the CO2 emissions per capita and than I'll group the data based on the first standard deviation left and right, the second and the third for both sides. 
 
 ### Day 5, friday 13-01-2017
-To make it to the deadline, I'm learning bootstrap to create a nice layout of my webpage. 
+To make it to the deadline, I'm learning bootstrap to create a nice layout of my webpage. I don't really understand how I can place for instance the pie chart in a div element, so I'm working on that. I'm also wondering if we need to form a separate file where all the functions are included.
+
+For the scatterplot I've to think about the function I'm going to write and when it has to react. Clicking on the map leads to a changing pie chart, but clicking on the map should also light up a certain point in the scatterplot. The other way around should work as well. I think I'll have to write two separate functions for this:
+* drawscatterplot. This one will have a default show of the most recent year. 
+* updatescatterplot. This one will update based on the selected country in the map. This function can be placed where also the drawpiechart function is located in the code. 

@@ -24,7 +24,7 @@ var pie = d3.layout.pie()
     .sort(null)
     .value(function (d) { return d.value; });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#col-md-6").append("svg")
     .attr("width", width)
     .attr("height", height)
   .append("g")
@@ -102,7 +102,7 @@ d3.json("../data/data.json", function(error, data){
    .attr("y", 575)
    .text("source: databank.org")
    .on("click", function() { window.open("http://databank.worldbank.org/data/reports.aspx?source=2&series=SP.POP.0014.TO.ZS&country=#") 
- })
+    })
    // adding info to the map
    d3.select("#container").select('svg').append("text")
    .attr("id", "info")
@@ -117,157 +117,48 @@ d3.json("../data/data.json", function(error, data){
    .attr("y", 550)
    .text("By Florinde Vessies")
   })  
+
+  // var displaySites = function(data) {
+  //   var sites = svg.selectAll(".site")
+  //       .data(data, function(d) {
+  //         return d.permalink;
+  //       });
+
+  //   sites.enter().append("circle")
+  //       .attr("class", "site")
+  //       .attr("cx", function(d) {
+  //         return projection([d.lng, d.lat])[0];
+  //       })
+  //       .attr("cy", function(d) {
+  //         return projection([d.lng, d.lat])[1];
+  //       })
+  //       .attr("r", 1)
+  //       .transition().duration(400)
+  //         .attr("r", 5);
+
+  //   sites.exit()
+  //     .transition().duration(200)
+  //       .attr("r",1)
+  //       .remove();
+  // };
+
+  // timeslider info
+  var minDate = 1960;
+  var maxDate = 2013;
+
+  d3.select('#slider3').call(d3.slider()
+  .axis(true).min(minDate).max(maxDate).step(10)
+  .on("slide", function(evt, value) {
+    var newData = _(site_data).filter( function(site) {
+      return site.created_at < value;
+    })
+    console.log("New set size ", newData.length);
+
+    displaySites(newData);
+  })
+);
   
-  // function that updates the map according to the chosen year
-  function update() {
-  var value = dropdown.options[dropdown.selectedIndex].value;
-  if (value == "1990") {    
-    d3.select("svg").remove();
-    d3.json("population.json", function(error, data){
-      if (error) throw error;
-      populationdata = data[1990];
-      data = data[1990];
-      var map = new Datamap({
-        element: document.getElementById('container'),
-        // Events for binding the map to the pie chart
-        done: function(datamap) {
-          datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography){
-            // add drawpiechart function here
-            countrycode = geography.id;
-            drawpiechart(populationdata, countrycode);
-          });
-        },
-         scope: 'world',
-         geographyConfig: {
-           borderColor: 'rgba(255,255,255,0.3)',
-           // highlights for hovering over the countries
-           highlightBorderColor: 'rgba(0,0,0,0.5)',
-           highlightFillColor: '#a8ddb5',
-           // popup when hovering over the countries
-           popupTemplate: function (geography, data) {
-              if (data) {
-                return '<div class="hoverinfo">' + '<strong>' +  data.location + '</strong>' + '<br/>' +
-                'Number of inhabitants: ' + data.inhabitants +  '</div>'
-              }
-              else {
-                return '<div class="hoverinfo">' + '<strong>' +  geography.properties.name + '</strong>' + '<br/>' +
-                'No data ' +  '</div>'
-                 ;
-              }
-           }
-         },
-         // fills for the data based on category (fillText)
-         fills: {
-          'A': colors[0],
-          'B': colors[1],
-          'C': colors[2],
-          'D': colors[3],
-          'E': colors[4],
-          'F': colors[5],
-          'G': colors[6],
-
-          defaultFill: '#cbd279'
-        },
-          data: data
-        });
-        // adding source to the map
-        d3.select("#container").select('svg').append("text")
-         .attr("id", "source")
-         .attr("x", 850)
-         .attr("y", 575)
-         .text("source: databank.org")
-         .on("click", function() { window.open("http://databank.worldbank.org/data/reports.aspx?source=2&series=SP.POP.0014.TO.ZS&country=#") 
-        })
-         // adding info to the map
-         d3.select("#container").select('svg').append("text")
-         .attr("id", "info")
-         .attr("x", width/2)
-         .attr("y", 550)
-         .text("Click on a country to view the locations where people live")
-         
-        // adding name to the map
-        d3.select("#container").select('svg').append("text")
-         .attr("id", "name")
-         .attr("x", 850)
-         .attr("y", 550)
-         .text("By Florinde Vessies")        
-            
-        });
-      }
-  else if (value == "2000") {
-    d3.select("svg").remove();
-    d3.json("population.json", function(error, data){
-      if (error) throw error;
-      populationdata = data[2000];
-       data = data[2000];
-      var map = new Datamap({
-            element: document.getElementById('container'),
-            // Events for binding the map to the pie chart
-            done: function(datamap) {
-              datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography){
-                // add drawpiechart function here
-                countrycode = geography.id;
-                drawpiechart(populationdata, countrycode);
-              });
-            },
-             scope: 'world',
-             geographyConfig: {
-               borderColor: 'rgba(255,255,255,0.3)',
-               // highlights for hovering over the countries
-               highlightBorderColor: 'rgba(0,0,0,0.5)',
-               highlightFillColor: '#a8ddb5',
-               // popup when hovering over the countries
-               popupTemplate: function (geography, data) {
-                  if (data) {
-                    return '<div class="hoverinfo">' + '<strong>' +  data.location + '</strong>' + '<br/>' +
-                    'Number of inhabitants: ' + data.inhabitants +  '</div>'
-                  }
-                  else {
-                    return '<div class="hoverinfo">' + '<strong>' +  geography.properties.name + '</strong>' + '<br/>' +
-                    'No data ' +  '</div>'
-                     ;
-                  }
-               }
-             },
-             // fills for the data based on category (fillText)
-             fills: {
-              'A': colors[0],
-              'B': colors[1],
-              'C': colors[2],
-              'D': colors[3],
-              'E': colors[4],
-              'F': colors[5],
-              'G': colors[6],
-
-              defaultFill: '#cbd279'
-            },
-              data: data
-            });
-            // adding source to the map
-            d3.select("#container").select('svg').append("text")
-             .attr("id", "source")
-             .attr("x", 850)
-             .attr("y", 575)
-             .text("source: databank.org")
-             .on("click", function() { window.open("http://databank.worldbank.org/data/reports.aspx?source=2&series=SP.POP.0014.TO.ZS&country=#") 
-            })
-             // adding info to the map
-             d3.select("#container").select('svg').append("text")
-             .attr("id", "info")
-             .attr("x", width/2)
-             .attr("y", 550)
-             .text("Click on a country to the locations where people live")
-             
-            // adding name to the map
-            d3.select("#container").select('svg').append("text")
-             .attr("id", "name")
-             .attr("x", 850)
-             .attr("y", 550)
-             .text("By Florinde Vessies")
-    });
-  }
-}  
-
+ 
 
 // The piechart function that updates when a country gets clicked
 function drawpiechart (populationdata, id) { 
@@ -345,13 +236,13 @@ function drawpiechart (populationdata, id) {
           .attr("text-anchor", "middle")
           .text(function (d) { return country; });
 
-      g.append("text")
-          .attr("id", "people")
-          .attr("x", 0 - 300)             
-          .attr("y", 0 - (height - 270))
-          .attr("text-anchor", "middle")
-          .text(function (d) {
-            return "Number of inhabitants: " + people.inhabitants; });
+      // g.append("text")
+      //     .attr("id", "people")
+      //     .attr("x", 0 - 300)             
+      //     .attr("y", 0 - (height - 270))
+      //     .attr("text-anchor", "middle")
+      //     .text(function (d) {
+      //       return "Number of inhabitants: " + people.inhabitants; });
 
       g.append("text")
           .attr("class", "ages")
@@ -367,17 +258,9 @@ function drawpiechart (populationdata, id) {
           .attr("y", 0 - (height -320))
           .attr("text-anchor", "middle")
           .text(function (d) {
-            return "people living in rural areas: " + parseFloat(node[2].value).toFixed(1) + "%"; });
+            return "people living in rural areas: " + parseFloat(node[1].value).toFixed(1) + "%"; });
 
-      g.append("text")
-          .attr("class", "ages")
-          .attr("x", 0 - 300)             
-          .attr("y", 0 - (height - 340))
-          .attr("text-anchor", "middle")
-          .text(function (d) {
-            return "Aged over 65: " + parseFloat(node[1].value).toFixed(1) + "%"; });
-             
-        function type(d) {
+      function type(d) {
           d.value = +d.value;
         return d;
       }

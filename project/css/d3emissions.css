@@ -6,6 +6,11 @@ LinkedViews
 javascript
 
 *******************************************************/
+ /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+      font-size: 48px;
+    } 
 /*
 source layout
 */
@@ -112,3 +117,7 @@ Tooltip for the Pie chart
     line-height: 20px;
 }
 
+#slider3 {
+  margin: 20px 0 10px 20px;
+  width: 900px;
+}
