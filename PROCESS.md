@@ -10,3 +10,5 @@ When inspecting the chosen data, I figured that the energy will not be that inte
 After the group meeting, I figured that I'm not entirely showing with my data what I'd like to show. Now I'm going to make a scatterplot with a linked pie chart and worldmap with a slider. That will be my MVP; but a sunburst as an add on would be really cool so I hope I'll be able to make that too. 
 
 ### Day 4, thursday 12-01-2017
+Today I'll make my JSONfile, update the readme.md so I can use it in the presentation tomorrow and I'll make the javascript, css and HTML pages.
+I'm still considering the sizes of the fillkeys; at first I thought of steps of 5 metric tons per capita, but in that case 140 countries will lie in the smallest group. This is not very informative on a map, so I'm considering to change these sizes but I don't know yet what will fit. 

@@ -1,0 +1,48 @@
+<!-- 
+Programmeerproject CO2 emissions
+Florinde Vessies, 10657738
+HTML
+ -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Worldmap</title>
+        
+        <!-- D3 Source -->
+        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+
+        <!-- tOPOjson Source -->
+       <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+
+       <!-- Datamaps Source -->
+        <script src="../javascript/datamaps.world.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/d3emissions.css"/>
+
+
+       
+        <!-- Adding legend -->
+        <!-- <script src="d3.legend.js"></script>
+
+    </head>
+    <body>
+    <select class="dropdown" id="dropdown" onchange= "update()" >
+          <option value="1990">1990</option>
+          <option value="2000">2000</option>
+        </select>  -->
+
+
+    <!-- identifying container -->
+    <div id="container" style="position: relative; width: 1100px; height: 650px;"></div>
+	<script class="map"></script>
+
+        <script src="../javascript/d3emissions.js"></script>
+
+        <!-- <div id="tooltip" class="hidden">
+    <p><strong>Percentage of inhabitants</strong>
+    </p>
+    <p><span id="value">100</span>%</p>
+</div> -->
+
+    </body>
+</html>
