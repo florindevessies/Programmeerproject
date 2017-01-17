@@ -23,5 +23,16 @@ For the scatterplot I've to think about the function I'm going to write and when
 * updatescatterplot. This one will update based on the selected country in the map. This function can be placed where also the drawpiechart function is located in the code. 
 
 ## Week 2
-### Day 6 , monday 16-01-2017
+### Day 6, monday 16-01-2017
 Today I've fixed my timeslider, which now updates the map accordingly. If I've time tonight, I'll fix it so it will update the pie chart as well. If not, that is something for tomorrow. Anyhow, tomorrow is the day for the scatterplot and to reconstruct all the info in different files. 
+
+### Day 7, tuesday 17-01-2017
+I didn't manage to fix the pie chart slider yesterday, so that is what I'm starting with. After that I'm planning on starting with the scatterplot. 
+Done:
+* I've placed my scripts in separate files, in order to be able to find faults more easily.
+* My pie chart now updates according to the slider. Happy days.
+
+I just came to the conclusion that my data are not exactly in a nice format for the scatterplot. In order to fix this, Sacha gave me the tip to put the countrycode not only as a key in my dataset, but also as value; using the d3.values() function, I can skip the keys as countrycodes and go right into the objects.
+I'm considering what I can do with my missing datapoints of the percentage of people that live in cities. An option is to place these at the absolute right.  However, some countries do not have information of the CO2 emissions either. Maybe this is nicer to fix in a legend that lights up when there is no data available.
+
+

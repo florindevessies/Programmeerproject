@@ -26,6 +26,9 @@ def addDataTodict(year, countrycode, location, seriesname, value):
                 data[year][countrycode]['sunburst'] = []
         if location not in data[year][countrycode]:
                 data[year][countrycode]["location"] = location
+        # countrycode is added again for the scatterplot
+        if countrycode not in data[year][countrycode]:
+                data[year][countrycode]["countrycode"] = countrycode
 
         # pie chart variables      
         if seriesname == "Urban population (% of total)":
@@ -72,6 +75,9 @@ def addDataTodict(year, countrycode, location, seriesname, value):
                         tiny_dict['size'] = value
                         data[year][countrycode]['sunburst'].append(tiny_dict)
         # other variables
+        if seriesname == "GDP per capita (current US$)": 
+                if 'GDPpercapita' not in data[year][countrycode]:
+                        data[year][countrycode]['GDPpercapita'] = value
         if seriesname == "Population, total": 
                 if 'inhabitants' not in data[year][countrycode]:
                         data[year][countrycode]['inhabitants'] = value
@@ -125,6 +131,7 @@ for i in range (0, len(years)):
                         data[year][i]["fillKey"] = 'F'
                 elif (float(data[year][i]["CO2percapita"]) > 25):
                         data[year][i]["fillKey"] = 'G'
+
 
 # def mean(lst):
 #     """calculates mean"""
