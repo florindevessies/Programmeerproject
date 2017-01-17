@@ -21,3 +21,7 @@ To make it to the deadline, I'm learning bootstrap to create a nice layout of my
 For the scatterplot I've to think about the function I'm going to write and when it has to react. Clicking on the map leads to a changing pie chart, but clicking on the map should also light up a certain point in the scatterplot. The other way around should work as well. I think I'll have to write two separate functions for this:
 * drawscatterplot. This one will have a default show of the most recent year. 
 * updatescatterplot. This one will update based on the selected country in the map. This function can be placed where also the drawpiechart function is located in the code. 
+
+## Week 2
+### Day 6 , monday 16-01-2017
+Today I've fixed my timeslider, which now updates the map accordingly. If I've time tonight, I'll fix it so it will update the pie chart as well. If not, that is something for tomorrow. Anyhow, tomorrow is the day for the scatterplot and to reconstruct all the info in different files. 

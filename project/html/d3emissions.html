@@ -25,6 +25,15 @@ HTML
         <link rel="stylesheet" href="../css/d3.slider.css" />
         <script src="../javascript/d3.slider.js"></script>
 
+        <!-- Bostock's slider brush: http://bl.ocks.org/mbostock/6452972-->
+        <!DOCTYPE html>
+        <meta charset="utf-8">
+        
+          <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+          <link rel="stylesheet" href="../css/slider.css">
+        
+        
+
         <!-- Bootstrap info -->
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -35,41 +44,30 @@ HTML
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
-       
-        <!-- Adding legend -->
-        <!-- <script src="d3.legend.js"></script> -->
-
     </head>
     <body>
-
-    <!-- <select class="dropdown" id="dropdown" onchange= "update()" >
-          <option value="1990">1990</option>
-          <option value="2000">2000</option>
-        </select>  -->
 
     <!-- creating title jumbotron -->
     <div class="jumbotron">
         <div class="container text-center">
-            <h1>CO2 emissions and urbanization</h1>
-            <p>The relationship</p> 
+            <h1>CO2 emissions and urbanization - the relationship</h1>
+            <h2>by Florinde Vessies, 10657738</h2> 
         </div>
     </div>
 
     <!-- creating divs for piechart and scatterplot -->
     <div class="container">    
         <div class="row">
-            <!-- <div style="padding:0 15px;"> --><!-- offset row negative padding -->
+        <!-- offset row negative padding -->
                 <div class="row">
                     <div id="col-md-6">
                     <div class="container"> 
                     </div>
                 </div>
 
-            <div class="col-md-6" style="background-color:yellow;">
-                BLABLABLA<div id="slider3"> woo</div>
+            <div class="col-md-6">
+                <div id="slider3"> </div>
                 </div>
-                <!-- </div> -->
             </div>
         </div>
     </div>
@@ -79,9 +77,9 @@ HTML
     <div id="container" style="position: relative; width: 1100px; height: 650px;"></div>
 	<script class="map"></script>
 
-        <script src="../javascript/d3emissions.js"></script>
+        <script src="../javascript/d3emissions2.js"></script>
 
-        <!-- <div id="tooltip" class="hidden">
+<!--         <div id="tooltip" class="hidden">
     <p><strong>Percentage of inhabitants</strong>
     </p>
     <p><span id="value">100</span>%</p>

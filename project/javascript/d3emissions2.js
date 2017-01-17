@@ -33,17 +33,119 @@ var svg = d3.select("#col-md-6").append("svg")
 // Loading in data for the default year
 d3.json("../data/data.json", function(error, data){
   if (error) throw error;
-   populationdata = data[2013];
-   data = data[2013];
+   populationdata = data;
+  
+// slider source: http://bl.ocks.org/zanarmstrong/ddff7cd0b1220bc68a58
+formatDate = d3.time.format("%Y");
+
+// parameters
+var margin = {
+    top: 50,
+    right: 50,
+    bottom: 50,
+    left: 50
+  },
+  width = 960 - margin.left - margin.right,
+  height = 300 - margin.bottom - margin.top;
+
+// scale function
+var timeScale = d3.time.scale()
+  .domain([new Date('1960'), new Date('2013')])
+  .range([0, width])
+  .clamp(true);
+
+// initial value
+var startValue = timeScale(new Date('1960'));
+startingValue = new Date('1960');
+
+// defines brush
+var brush = d3.svg.brush()
+  .x(timeScale)
+  .extent([startingValue, startingValue])
+  .on("brush", UpdateSlider);
+
+
+var svg = d3.select("body").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  // classic transform to position g
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("g")
+  .attr("class", "x axis")
+// put in middle of screen
+.attr("transform", "translate(0," + height / 2 + ")")
+// introduce axis
+.call(d3.svg.axis()
+  .scale(timeScale)
+  .orient("bottom")
+  .tickFormat(function(d) {
+    return formatDate(d);
+  })
+  .tickSize(0)
+  .tickPadding(12)
+  .tickValues([timeScale.domain()[0], timeScale.domain()[1]]))
+  .select(".domain")
+  .select(function() {
+    return this.parentNode.appendChild(this.cloneNode(true));
+  })
+  .attr("class", "halo");
+
+var slider = svg.append("g")
+  .attr("class", "slider")
+  .call(brush);
+
+slider.selectAll(".extent,.resize")
+  .remove();
+
+slider.select(".background")
+  .attr("height", height);
+
+var handle = slider.append("g")
+  .attr("class", "handle")
+
+handle.append("path")
+  .attr("transform", "translate(0," + height / 2 + ")")
+  .attr("d", "M 0 -20 V 20")
+
+handle.append('text')
+  .text(startingValue)
+  .attr("transform", "translate(" + (-18) + " ," + (height / 2 - 25) + ")");
+
+slider
+  .call(brush.event)
+
+// updating the time slider
+function UpdateSlider(year) {
+  var value = brush.extent()[0];
+  UpdateMap(formatDate(value));
+  if (d3.event.sourceEvent) { // not a programmatic event
+    value = timeScale.invert(d3.mouse(this)[0]);
+    UpdateMap(formatDate(value));
+    // Updatepiechart()
+    brush.extent([value, value]);
+  }
+
+  handle.attr("transform", "translate(" + timeScale(value) + ",0)");
+  handle.select('text').text(formatDate(value));
+}
+
+// function that draws the map, and updates it if called again
+function UpdateMap(year){
+  d3.select("#container").selectAll("svg").remove();
+  d3.select(".datamaps-legend").remove();
    colors = ['#5bc8c8', '#3fb1bc', '#368aa3', '#2d6d88', '#244f6b', '#173445', '#0c1924' ]
+   data2 = data[year];
+   populationdata2 = populationdata[year];
    var map = new Datamap({
         element: document.getElementById('container'),
         // Events for binding the map to the pie chart
-        done: function(datamap) {
+        done: function DrawMap(datamap) {
           datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography){
             // add drawpiechart function here
             countrycode = geography.id;
-            drawpiechart(populationdata, countrycode);
+            drawpiechart(populationdata2, countrycode);
           });
         },
          scope: 'world',
@@ -78,7 +180,7 @@ d3.json("../data/data.json", function(error, data){
 
           defaultFill: '#cbd279'
         },
-          data: data
+          data: data2
         });
         
         // Adding a legend
@@ -109,45 +211,11 @@ d3.json("../data/data.json", function(error, data){
    .attr("x", width/2)
    .attr("y", 550)
    .text("Click on a country to view the locations where people live")
-   
-  // adding name to the map
-  d3.select("#container").select('svg').append("text")
-   .attr("id", "name")
-   .attr("x", 850)
-   .attr("y", 550)
-   .text("By Florinde Vessies")
+
+  }
   })  
 
-  // the function that makes it able to slide through the years
-  function UpdateYear (data) {
-    var sites = svg.selectAll(".countrycode")
-        .data(data, function(d) {
-          return data.countrycode;
-        });
 
-    sites.exit()
-      .transition().duration(200)
-        .attr("r",1)
-        .remove();
-  };
-
-  // timeslider info
-  var minDate = 1960;
-  var maxDate = 2013;
-
-  d3.select('#slider3').call(d3.slider()
-  .axis(true).min(minDate).max(maxDate).step(10)
-  .on("slide", function(evt, value) {
-    var newData = _(site_data).filter( function(site) {
-      return site.created_at < value;
-    })
-    console.log("New set size ", newData.length);
-
-    UpdateYear(newData);
-  })
-);
-  
- 
 
 // The piechart function that updates when a country gets clicked
 function drawpiechart (populationdata, id) { 
@@ -225,13 +293,13 @@ function drawpiechart (populationdata, id) {
           .attr("text-anchor", "middle")
           .text(function (d) { return country; });
 
-      // g.append("text")
-      //     .attr("id", "people")
-      //     .attr("x", 0 - 300)             
-      //     .attr("y", 0 - (height - 270))
-      //     .attr("text-anchor", "middle")
-      //     .text(function (d) {
-      //       return "Number of inhabitants: " + people.inhabitants; });
+      g.append("text")
+          .attr("id", "people")
+          .attr("x", 0 - 300)             
+          .attr("y", 0 - (height - 270))
+          .attr("text-anchor", "middle")
+          .text(function (d) {
+            return "Number of inhabitants: " + people.inhabitants; });
 
       g.append("text")
           .attr("class", "ages")
