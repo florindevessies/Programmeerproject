@@ -50,32 +50,30 @@ HTML
     <!-- creating title jumbotron -->
     <div class="jumbotron">
         <div class="container text-center">
-            <h1>CO2 emissions and urbanization - the relationship</h1>
-            <h2>by Florinde Vessies, 10657738</h2> 
+            CO2 emissions and urbanization - the relationship
         </div>
     </div>
 
     <!-- creating divs for piechart and scatterplot -->
     <div class="container">    
         <div class="row">
-        <!-- offset row negative padding -->
-                <div class="row">
-                    <div id="col-md-6">
-                    <div class="container"> 
-                    </div>
-                </div>
-
-            <div class="col-md-6">
-                <div id="slider3"> </div>
-                </div>
-            </div>
+            <div id="scatterplot"></div>
+            <div id="infotext"> blablabla</div>
+            <div id="piechart"></div>
+        </div>
+        <div class = "row">
+            <div id ="slider"> </div>
         </div>
     </div>
-
 
     <!-- identifying container for the map-->
     <div id="container" style="position: relative; width: 1100px; height: 650px;"></div>
 	<script class="map"></script>
+
+<footer class="container-fluid text-center">
+  <p>By Florinde Vessies, 10657738</p> 
+  <p>source: worldbank.org</p> 
+</footer>
 
         <script src="../javascript/d3emissions2.js"></script>
         <script src="../javascript/emissionsscatterplot.js"></script>

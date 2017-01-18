@@ -6,21 +6,13 @@ javascript scatterplot
 
 *******************************************************/
 
-// Loading in data for the default year
-d3.json("../data/data.json", function(error, data){
-  if (error) throw error;
-
-  // call the method below
-    drawScatterPlot(data);
-});
-
-function drawScatterPlot(data) {
-    d3.select(".col-md-6").selectAll("svg").remove();
-    data = data[1960];
+function drawScatterPlot(data, year) {
+    d3.select("#scatterplot").selectAll("svg").remove();
+    // data = data[1960];
     data = d3.values(data);
     // just to have some space around items. 
     var margins = {
-        "left": 40,
+            "left": 60,
             "right": 30,
             "top": 30,
             "bottom": 30
@@ -33,7 +25,7 @@ function drawScatterPlot(data) {
     var colors = d3.scale.category10();
 
     // we add the SVG component to the scatter-load div
-    var svg = d3.select(".col-md-6").append("svg").attr("width", width).attr("height", height).append("g")
+    var svg = d3.select("#scatterplot").append("svg").attr("width", width).attr("height", height).append("g")
         .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
 
     // this sets the scale that we're using for the X axis. 
@@ -74,34 +66,46 @@ function drawScatterPlot(data) {
     svg.selectAll("g.y.axis").call(yAxis);
     svg.selectAll("g.x.axis").call(xAxis);
 
+
     // now, we can get down to the data part, and drawing stuff. We are telling D3 that all nodes (g elements with class node) will have data attached to them. 
     //The 'key' we use (to let D3 know the uniqueness of items) will be the name. Not usually a great key, but fine for this example.
     var country = svg.selectAll("g.node").data(data, function (d) {
-        return d.countrycode;        
+        if ((d.percentagecities != ".." && d.CO2percapita != "..")) {
+            if (d.location != "Bangladesh" && d.location != "Isle of Man" && d.location != "Liechtenstein" && d.location != "Algeria"){
+                return d.countrycodes;
+            }            
+        }
     });
 
-    // we 'enter' the data, making the SVG group (to contain a circle and text) with a class node. This corresponds with what we told the data it should be above.
-    var countryGroup = country.enter().append("g").attr("class", "node")
-    // this is how we set the position of the items. Translate is an incredibly useful function for rotating and positioning items 
-    .attr('transform', function (d) {
-        return "translate(" + x(parseFloat(d.percentagecities)) + "," + y(parseFloat(d.CO2percapita)) + ")";
+    
+   // adding class node and setting up positions
+   var countryGroup = country.enter().append("g").attr("class", "node")
+     .attr('transform', function (d) {
+        if (!((d.percentagecities == "..") || (d.CO2percapita == ".."))) {
+            d3.select("#scatterplot").selectAll("node").remove();
+                return "translate(" + x(parseFloat(d.percentagecities)) + "," + y(parseFloat(d.CO2percapita)) + ")";
+        }
     });
 
-    // we add our first graphics element! A circle! 
+    // adding circles
     countryGroup.append("circle")
         .attr("r", 5)
         .attr("class", "dot")
         .style("fill", function (d) {
-            // by who makes the chocolate. 
-            return colors(d.fillKey);
+            if (!((d.percentagecities == "..") || (d.CO2percapita == ".."))) {
+                return colors(d.fillKey);
+            }
     });
 
-    // // now we add some text, so we can see what each item is.
+    // now we add some text, so we can see what each item is.
     // countryGroup.append("text")
     //     .style("text-anchor", "middle")
     //     .attr("dy", -10)
     //     .text(function (d) {
-    //         // this shouldn't be a surprising statement.
-    //         return d.location;
+    //         if ((d.percentagecities != "..") && (d.CO2percapita != "..")) {
+    //             // if (d.location == "Bangladesh"){
+    //                 return d.location;
+    //             // }
+    // //     }
     // });
 }

@@ -7,6 +7,7 @@ javascript window onload
 *******************************************************/
 var populationdata;
 var data;
+var countrycode;
 
 // Loading in data for the default year
 d3.json("../data/data.json", function(error, data){
@@ -23,8 +24,8 @@ var margin = {
     bottom: 50,
     left: 50
   },
-  width = 960 - margin.left - margin.right,
-  height = 300 - margin.bottom - margin.top;
+  width = 500 - margin.left - margin.right,
+  height = 150 - margin.bottom - margin.top;
 
 // scale function
 var timeScale = d3.time.scale()
@@ -43,7 +44,7 @@ var brush = d3.svg.brush()
   .on("brush", UpdateSlider);
 
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#slider").append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -96,12 +97,17 @@ slider
 
 // updating the time slider
 function UpdateSlider(year) {
+  d3.selectAll("#nodata").remove();
   var value = brush.extent()[0];
+  // console.log(countrycode);
   UpdateMap(data, formatDate(value));
-  drawScatterPlot(data);
-  if (d3.event.sourceEvent) { // not a programmatic event
+  drawScatterPlot(data[formatDate(value)]);
+  yearcountry = populationdata[formatDate(value)];
+  // console.log(yearcountry);
+  if (d3.event.sourceEvent) {
     value = timeScale.invert(d3.mouse(this)[0]);
-    UpdateMap(data,formatDate(value));
+    UpdateMap(data, formatDate(value));
+    drawScatterPlot(data[formatDate(value)]);
     drawpiechart(populationdata[formatDate(value)], countrycode, formatDate(value));
     brush.extent([value, value]);
   }

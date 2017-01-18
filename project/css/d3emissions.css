@@ -7,10 +7,15 @@ javascript
 
 *******************************************************/
  /* Remove the jumbotron's default bottom margin */ 
-     .jumbotron {
-      margin-bottom: 0;
-      font-size: 48px;
-    } 
+.jumbotron {
+  margin-bottom: 0;
+  max-height: 150px;
+  font-size: 18px;
+} 
+
+#h1{
+  font-size: 18px;
+}
 /*
 source layout
 */
@@ -120,4 +125,29 @@ Tooltip for the Pie chart
 #slider3 {
   margin: 20px 0 10px 20px;
   width: 900px;
+}
+
+.row
+{
+    width: 960px;
+    height: auto;
+    margin:0;
+    padding:0;
+    border: 0;
+}
+
+#piechart, #scatterplot{
+    width: 290px;
+    float: left;
+}
+
+#infotext
+{
+    width: auto;
+    float: left;
+}
+
+footer {
+  background-color: #f2f2f2;
+  padding: 25px;
 }

@@ -5,15 +5,15 @@ CO2 emissions and urbanization
 javascript pie chart
 
 *******************************************************/
-var width = 800,
-    height = 300,
+var width = 500,
+    height = 500,
     radius = Math.min(width, height) / 2;
 
 var color = d3.scale.ordinal()
     .range(["#cf836e", "#bf5f40", "#8f4c30"]);
 
 var arc = d3.svg.arc()
-    .outerRadius(radius - 10)
+    .outerRadius(radius - 100)
     .innerRadius(0);
 
 // defines wedge size
@@ -21,7 +21,13 @@ var pie = d3.layout.pie()
     .sort(null)
     .value(function (d) { return d.value; });
 
-var svg = d3.select("#col-md-6").append("svg")
+var svg = d3.select("#infotext").append("svg")
+    .attr("width", 200)
+    .attr("height", 200)
+  .append("g")
+    .attr("transform", "translate(" + width / 1.75 + "," + height / 2 + ")");
+
+var svg = d3.select("#piechart").append("svg")
     .attr("width", width)
     .attr("height", height)
   .append("g")
@@ -32,7 +38,7 @@ function drawpiechart (populationdata, id, year) {
   if (populationdata[countrycode] === undefined || populationdata[countrycode] === null) {
       d3.selectAll(".arc").remove();      
       d3.select("piecharttitle").remove();
-      d3.select("nodata").remove();
+      d3.select("#nodata").remove();
 
         svg.append("text")
           .attr("id", "nodata")
@@ -49,7 +55,7 @@ function drawpiechart (populationdata, id, year) {
     if (node[0].value == '..') {
       d3.selectAll(".arc").remove();      
       d3.select("piecharttitle").remove();
-      d3.select("nodata").remove();
+      d3.select("#nodata").remove();
 
         svg.append("text")
           .attr("id", "nodata")
@@ -111,21 +117,21 @@ function drawpiechart (populationdata, id, year) {
           .text(function (d) {
             return "Number of inhabitants: " + people.inhabitants; });
 
-      g.append("text")
-          .attr("class", "ages")
-          .attr("x", 0 - 300)             
-          .attr("y", 0 - (height - 300))
-          .attr("text-anchor", "middle")
-          .text(function (d) {
-            return "People living in cities: " + parseFloat(node[0].value).toFixed(1) + "%"; });
+      // g.append("text")
+      //     .attr("class", "ages")
+      //     .attr("x", 0 - 300)             
+      //     .attr("y", 0 - (height - 300))
+      //     .attr("text-anchor", "middle")
+      //     .text(function (d) {
+      //       return "People living in cities: " + parseFloat(node[0].value).toFixed(1) + "%"; });
 
-      g.append("text")
-          .attr("class", "ages")
-          .attr("x", 0 - 300)             
-          .attr("y", 0 - (height -320))
-          .attr("text-anchor", "middle")
-          .text(function (d) {
-            return "people living in rural areas: " + parseFloat(node[1].value).toFixed(1) + "%"; });
+      // g.append("text")
+      //     .attr("class", "ages")
+      //     .attr("x", 0 - 300)             
+      //     .attr("y", 0 - (height -320))
+      //     .attr("text-anchor", "middle")
+      //     .text(function (d) {
+      //       return "people living in rural areas: " + parseFloat(node[1].value).toFixed(1) + "%"; });
 
       function type(d) {
           d.value = +d.value;

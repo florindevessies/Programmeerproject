@@ -28,20 +28,27 @@ def addDataTodict(year, countrycode, location, seriesname, value):
                 data[year][countrycode]["location"] = location
         # countrycode is added again for the scatterplot
         if countrycode not in data[year][countrycode]:
-                data[year][countrycode]["countrycode"] = countrycode
+                data[year][countrycode]["countrycodes"] = countrycode
 
         # pie chart variables      
         if seriesname == "Urban population (% of total)":
+            if value != "..":                
                 tiny_dict = {}
                 tiny_dict['seriesname'] = "urban"
                 tiny_dict['value'] = value               
                 data[year][countrycode]['piechart'].append(tiny_dict)
-        if seriesname == "Rural population (% of total population)":                
+        if seriesname == "Rural population (% of total population)": 
+            if value != "..":               
                 tiny_dict = {}
                 tiny_dict['seriesname'] = "rural"
                 tiny_dict['value'] = value
                 data[year][countrycode]['piechart'].append(tiny_dict)
-        # sunburst variables
+            else:
+                tiny_dict = {}
+                tiny_dict['seriesname'] = "nodata"
+                tiny_dict['value'] = 100
+                data[year][countrycode]['piechart'].append(tiny_dict)
+            # sunburst variables
         # If there is no data available, the sunburst will show 100 percent of 'no data'
         if seriesname == "CO2 emissions from electricity and heat production, total (% of total fuel combustion)":
                 if value == "..":
@@ -132,6 +139,7 @@ for i in range (0, len(years)):
                 elif (float(data[year][i]["CO2percapita"]) > 25):
                         data[year][i]["fillKey"] = 'G'
 
+# print(data)
 
 # def mean(lst):
 #     """calculates mean"""

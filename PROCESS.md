@@ -35,4 +35,16 @@ Done:
 I just came to the conclusion that my data are not exactly in a nice format for the scatterplot. In order to fix this, Sacha gave me the tip to put the countrycode not only as a key in my dataset, but also as value; using the d3.values() function, I can skip the keys as countrycodes and go right into the objects.
 I'm considering what I can do with my missing datapoints of the percentage of people that live in cities. An option is to place these at the absolute right.  However, some countries do not have information of the CO2 emissions either. Maybe this is nicer to fix in a legend that lights up when there is no data available.
 
+### Day 8, wednesday 18-01-2017
+Somehow my piechart completely disappeared and I've no clue where it is. However, my scatterplot updates according to the slider, which is nice. For the scatterplot I've to fix the following things:
+* if a country gets clicked, it should light up in the worldmap
+* This should work the other way around as well
+* The colors should not be visible all the time, only on a hover over event
+* the over all layout is ugly, so that should be prettier
+* if no data is available, this should be noted in the information next to the scatterplot
+
+The absence of data for countries like Russia in the years until 1990 is probably caused by the fall of the Berlin Wall around that time. This is report info.
+
+Terrible day. Figured that Algeria, Bangladesh, Liechtenstien and Isle of man have weird stuff in their data. Excluded them using if statements, but I might better exclude them using python.
+
 
