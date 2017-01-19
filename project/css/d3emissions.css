@@ -136,7 +136,14 @@ Tooltip for the Pie chart
     border: 0;
 }
 
-#piechart, #scatterplot{
+#piechart{
+    position: relative;
+    width: 290px;
+    float: right;
+}
+
+#scatterplot{
+    position: relative;
     width: 290px;
     float: left;
 }
@@ -150,4 +157,14 @@ Tooltip for the Pie chart
 footer {
   background-color: #f2f2f2;
   padding: 25px;
+}
+
+/*
+Tooltip for the scatterplot
+*/
+.tooltip {
+  position: fixed;
+  width: 200px;
+  height: 28px;
+  pointer-events: none;
 }

@@ -47,4 +47,17 @@ The absence of data for countries like Russia in the years until 1990 is probabl
 
 Terrible day. Figured that Algeria, Bangladesh, Liechtenstien and Isle of man have weird stuff in their data. Excluded them using if statements, but I might better exclude them using python.
 
+### Day 9, thursday 19-01-2017
+Plan for the day:
+* delete the missing countries from my dataset
+* fix those annoying messages with "no data available for this country"
+* update the scatterplot according to the worldmap and piechart
+* maybe some layout stuff of these as well
+
+Bugs:
+* no data available for this country is to often shown
+* 4 countries are excluded, but no clear message is given yet
+* if I change the size of the page, everthing changes in the wrong direction
+
+
 

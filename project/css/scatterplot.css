@@ -6,10 +6,10 @@ body {
     float:right;
     color:#27aae1;
 }
-.axis {
+g {
     fill: none;
     stroke: #AAA;
-    stroke-width: 1px;
+    stroke-width: 10px;
 }
 text {
     stroke: none;
@@ -26,4 +26,8 @@ text {
 .dot {
     opacity: .7;
     cursor: pointer;
+}
+
+#selected {
+    fill: red;
 }

@@ -8,6 +8,7 @@ javascript window onload
 var populationdata;
 var data;
 var countrycode;
+var year;
 
 // Loading in data for the default year
 d3.json("../data/data.json", function(error, data){
@@ -99,21 +100,20 @@ slider
 function UpdateSlider(year) {
   d3.selectAll("#nodata").remove();
   var value = brush.extent()[0];
-  // console.log(countrycode);
-  UpdateMap(data, formatDate(value));
-  drawScatterPlot(data[formatDate(value)]);
-  yearcountry = populationdata[formatDate(value)];
-  // console.log(yearcountry);
+  year = formatDate(value);
+  UpdateMap(data, year);
+  drawScatterPlot(data[year], year);
+  drawpiechart(populationdata[year], countrycode,year);
   if (d3.event.sourceEvent) {
     value = timeScale.invert(d3.mouse(this)[0]);
-    UpdateMap(data, formatDate(value));
-    drawScatterPlot(data[formatDate(value)]);
-    drawpiechart(populationdata[formatDate(value)], countrycode, formatDate(value));
+    UpdateMap(data, year);
+    drawScatterPlot(data[year], year);
+    drawpiechart(populationdata[year], countrycode, year);
     brush.extent([value, value]);
   }
 
   handle.attr("transform", "translate(" + timeScale(value) + ",0)");
-  handle.select('text').text(formatDate(value));
+  handle.select('text').text(year);
 }
 
 
