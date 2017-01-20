@@ -11,7 +11,7 @@ var countrycode;
 var year;
 
 // Loading in data for the default year
-d3.json("../data/data.json", function(error, data){
+d3.json("../data/data3.json", function(error, data){
   if (error) throw error;
    populationdata = data;
   
@@ -109,6 +109,22 @@ function UpdateSlider(year) {
     UpdateMap(data, year);
     drawScatterPlot(data[year], year);
     drawpiechart(populationdata[year], countrycode, year);
+
+    // keep country selected in worldmap
+    // if (prevFill) {
+    //       d3.select(selectorCountry).style("fill", prevFill);
+    //     }
+    //     selectorCountry = "." + countrycode;
+    //     prevFill = d3.select(selectorCountry).style("fill")
+    //     d3.select(selectorCountry).style("fill", "000000");
+
+    // if (prevFillCircle) {
+    //       d3.select(IDcountry).style("fill", prevFillCircle);
+    //     }
+
+    //     IDcountry = "#" + countrycode;
+    //     prevFillCircle = d3.select(IDcountry).style("fill");
+    //     d3.select(IDcountry).style("fill", "000000");
     brush.extent([value, value]);
   }
 

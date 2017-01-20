@@ -122,9 +122,9 @@ Tooltip for the Pie chart
     line-height: 20px;
 }
 
-#slider3 {
-  margin: 20px 0 10px 20px;
-  width: 900px;
+#slider {
+  position: fixed;
+  bottom: 20px;
 }
 
 .row

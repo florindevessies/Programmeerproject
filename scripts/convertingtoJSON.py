@@ -13,7 +13,7 @@ from math import sqrt
 # Making dictionary to store the countries with happiness
 data = {}
 # Creating JSONfile
-jsonfile = open('../project/data/data.json', 'w')
+jsonfile = open('../project/data/data3.json', 'w')
 
 # Function to add data to a dictionary
 def addDataTodict(year, countrycode, location, seriesname, value):
@@ -105,7 +105,7 @@ while int(year_num) < 2014:
     years.append(year_num)
     year_num = int(year_num) + 1        
 # reading csv file with universal newline support open()
-with open('../project/data/data.csv', 'rU') as infile:
+with open('../project/data/data3.csv', 'rU') as infile:
         reader = csv.reader(infile)
         next(infile)        
         
@@ -119,6 +119,7 @@ with open('../project/data/data.csv', 'rU') as infile:
                         value = row[4+i]
                         addDataTodict(year, countrycode, location, seriesname, value)
 
+# print data
 for i in range (0, len(years)):
         year = years[i]
         for i in data[year]:

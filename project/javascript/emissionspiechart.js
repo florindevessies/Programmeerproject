@@ -95,8 +95,8 @@ function drawpiechart (populationdata, id, year) {
             // Adding title to the pie chart
       g.append("text")
           .attr("id", "piecharttitle")
-          .attr("x", 0 - (300))             
-          .attr("y", 0 - (height / 4))
+          .attr("x", 0 - (60))
+          .attr("y", 0 - (height / 2.5))
           .attr("text-anchor", "middle")
           .text(function (d) {
             return "locations where people live in "; });
@@ -104,8 +104,8 @@ function drawpiechart (populationdata, id, year) {
       // adding the country to the title
       g.append("text")
           .attr("id", "piecharttitle")
-          .attr("x", 0 - (300))             
-          .attr("y", 0 - (height / 5.5))
+          .attr("x", 0 - (50))             
+          .attr("y", 0 - (height / 2.8))
           .attr("text-anchor", "middle")
           .text(function (d) { return country; });
 

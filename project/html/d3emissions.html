@@ -6,6 +6,7 @@ HTML
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel='shortcut icon' type='image/x-icon' href='http://www.uva.nl/apple-touch-icon.png'/>
         <meta charset="utf-8">
         <title>Worldmap</title>
         
@@ -36,6 +37,7 @@ HTML
 
         <!-- Bootstrap info -->
         <!-- Latest compiled and minified CSS -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
         <!-- jQuery library -->
@@ -55,30 +57,40 @@ HTML
     </div>
 
     <!-- creating divs for piechart and scatterplot -->
-    <div class="container">    
-        <div class="row">
-            <div id="scatterplot"></div>
-            <!-- <div id="infotext"> blablabla</div> -->
-            <div id="piechart"></div>
-        </div>
-        <div class = "row">
-            <div id ="slider"> </div>
-        </div>
+    <div class="container-fluid"> 
         <div class = "row">
             <div id="container" style="position: relative; width: 1100px; height: 650px;"></div>
             <script class="map"></script>
         </div>
-
+   
+       <!--  <div class="row">
+            <div id="scatterplot"></div>
+            <div id="infotext"> blablabla</div>
+            <div id="piechart"></div>
+        </div> -->
+        <div class = "row">
+            <div id ="slider"> </div>
+        </div>        
+        <div class="row">
+        <div class="col-md-4">
+        <div id="scatterplot"></div>
+      <h3>Column 1</h3>
     </div>
-
-    <!-- identifying container for the map-->
-    
-	
+    <div class="col-md-4">
+    <div id="infotext"></div>
+      <h3>Column 2</h3>
+    </div>
+    <div class="col-md-4">
+     <div id="piechart"></div>
+      <h3>Column 3</h3>
+    </div>
+  </div>
+    </div>
 
 <footer class="container-fluid text-center">
   <h6>By Florinde Vessies, 10657738</h6> 
-  <h6>source: worldbank.org</h6> 
-</footer>
+  <h6><a href="http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators#">© worldbank.org</a>
+  </footer>
 
         <script src="../javascript/d3emissions2.js"></script>
         <script src="../javascript/emissionsworldmap.js"></script>

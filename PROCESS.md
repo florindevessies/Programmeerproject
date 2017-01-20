@@ -59,5 +59,7 @@ Bugs:
 * 4 countries are excluded, but no clear message is given yet
 * if I change the size of the page, everthing changes in the wrong direction
 
+### Day 10, friday 20-01-2017
+I deleted some weird data from my dataset (like low income, middle income etc.). Apart from that I want to make sure that a country stays selected when sliding through the years. 
 
-
+Now I'm going to fix that if you select a country on the worldmap, it will light up in the scatterplot (so the reverse work of what I've done yesterday). I've also added a favicon to my site. I'm working on updating the scatterplot according to the worldmap, but somehow I can't manage to get the fill from the ids. If the slider moves, the same country stays selected so that is nice. However, somehow this is not functioning very well in my scatterplot yet, so I'll ask a question about that next week. 

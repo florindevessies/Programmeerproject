@@ -17,7 +17,7 @@ function drawScatterPlot(data, year) {
             "left": 60,
             "right": 30,
             "top": 30,
-            "bottom": 30
+            "bottom": 40
     };
     
     var width = 500;
@@ -57,14 +57,21 @@ function drawScatterPlot(data, year) {
 
     // Add to svg component
     svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + y.range()[0] + ")");
-    svg.append("g").attr("class", "y axis");
+    svg.append("g").attr("class", "y axis")
+    .append("text")
+      .attr("fill", "#000")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .style("text-anchor", "end")
+      .text("CO2 emissions per capita");
 
     // X axis label
     svg.append("text")
-        .attr("fill", "#414241")
+        .attr("fill", "#000")
         .attr("text-anchor", "end")
-        .attr("x", width / 2)
-        .attr("y", height - 35)
+        .attr("x", width / 1.8)
+        .attr("y", height - 34)
         .text("percentage living in cities");
 
     // define axes
@@ -98,6 +105,9 @@ function drawScatterPlot(data, year) {
     countryGroup.append("circle")
         .attr("r", 5)
         .attr("class", "dot")
+        .attr("id", function (d) {
+            return d.countrycodes;
+        })
         .style("fill", function (d) {
             if (!((d.percentagecities == "..") || (d.CO2percapita == ".."))) {
                 return colors(d.fillKey);
@@ -118,30 +128,16 @@ function drawScatterPlot(data, year) {
                .duration(500)
                .style("opacity", 0);
       })
-      .on("click", function(d,i) {
+      .on("click", function(d) {
             populationdata2 = populationdata[year];
             countrycode = d.countrycodes;
-            // d3.select(selectorCountry).attr("id", false);
-            // var selectorCountry = "." + countrycode;
-            // // var selectorID = "#" + countrycode;
-
-            // d3.select(selectorCountry).attr("id", "selected");
-            // console.log(selectorCountry);
-
             if (prevFill) {
-                console.log(selectorCountry, prevFill)
                 d3.select(selectorCountry).style("fill", prevFill);
             }
-
             selectorCountry = "." + countrycode;
-
-            console.log(d3.select(selectorCountry).style("fill"))
-
             prevFill = d3.select(selectorCountry).style("fill")
 
             d3.select(selectorCountry).style("fill", "000000")
-
-
 
             drawpiechart(populationdata2, countrycode, year);
           var x = d3.select(this).attr("cx"),
