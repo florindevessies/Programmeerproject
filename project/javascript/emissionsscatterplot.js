@@ -8,6 +8,19 @@ javascript scatterplot
 var prevFill;
 var selectorCountry;
 
+// var getData = function(data, countrycode){
+//     dataLine = [];
+
+
+//     for (var year in data) {
+//         dataLine.push({ name: year, 
+//         co2emissions: parseFloat(data[year][countrycode]["co2emissions"]),
+//         gdp: parseFloat(dataset[year][countrycode]["gdp"]) });
+//       }
+//     console.log(dataLine);
+
+  
+// }
 
 function drawScatterPlot(data, year) {
     d3.select("#scatterplot").selectAll("svg").remove();

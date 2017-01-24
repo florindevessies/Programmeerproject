@@ -104,6 +104,7 @@ function UpdateSlider(year) {
   UpdateMap(data, year);
   drawScatterPlot(data[year], year);
   drawpiechart(populationdata[year], countrycode,year);
+
   if (d3.event.sourceEvent) {
     value = timeScale.invert(d3.mouse(this)[0]);
     UpdateMap(data, year);
@@ -130,7 +131,10 @@ function UpdateSlider(year) {
 
   handle.attr("transform", "translate(" + timeScale(value) + ",0)");
   handle.select('text').text(year);
+
+
 }
 
 
 });
+

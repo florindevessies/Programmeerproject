@@ -63,3 +63,12 @@ Bugs:
 I deleted some weird data from my dataset (like low income, middle income etc.). Apart from that I want to make sure that a country stays selected when sliding through the years. 
 
 Now I'm going to fix that if you select a country on the worldmap, it will light up in the scatterplot (so the reverse work of what I've done yesterday). I've also added a favicon to my site. I'm working on updating the scatterplot according to the worldmap, but somehow I can't manage to get the fill from the ids. If the slider moves, the same country stays selected so that is nice. However, somehow this is not functioning very well in my scatterplot yet, so I'll ask a question about that next week. 
+
+## Week 3
+### Day 11, monday 23-01-2017
+Working on the sunburst. I've figured that my data are almost in the right format, but not entirely. Im considering working with two json files after this. Today I'm going to format my data to the name-children format from the example, and see whether I can make this work for my dataset. 
+
+It is quite difficult, so I will have to ask many questions tomorrow.
+
+### Day 12, tuesday 24-01-2017
+OK, the beginning of the sunburst is working.. but my data is absolutely not in the right format yet.
