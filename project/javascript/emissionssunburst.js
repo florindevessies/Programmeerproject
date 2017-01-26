@@ -1,79 +1,81 @@
-/******************************************************
-Programmeerproject 
-Florinde Vessies, 10657738
-CO2 emissions and urbanization
-javascript sunburst
+  /******************************************************
+  Programmeerproject 
+  Florinde Vessies, 10657738
+  CO2 emissions and urbanization
+  javascript sunburst
 
-*******************************************************/
-// based on the example of Mike Bostock, http://bl.ocks.org/mbostock/4348373
-datasun = [];
+  *******************************************************/
+  // based on the example of Mike Bostock, http://bl.ocks.org/mbostock/4348373
 
-var width = 960,
-    height = 700,
-    radius = (Math.min(width, height) / 2) - 10;
+ 
 
-var formatNumber = d3.format(",d");
+  function drawsunburst (dataSunburst, year) {
+    d3.select("#sunburstsvg").remove();
+    datasun = {};
 
-var x = d3.scale.linear()
-    .range([0, 2 * Math.PI]);
+    var sunwidth = 960,
+      sunheight = 700,
+      sunradius = (Math.min(sunwidth, sunheight) / 2) - 10;
 
-var y = d3.scale.sqrt()
-    .range([0, radius]);
+    var formatNumber = d3.format(",d");
 
-var color = d3.scale.category20c();
+    var x = d3.scale.linear()
+        .range([0, 2 * Math.PI]);
 
-var partition = d3.layout.partition()
-    .value(function(d) { return d.size; });
+    var y = d3.scale.sqrt()
+        .range([0, sunradius]);
 
-var arc = d3.svg.arc()
-    .startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x))); })
-    .endAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx))); })
-    .innerRadius(function(d) { return Math.max(0, y(d.y)); })
-    .outerRadius(function(d) { return Math.max(0, y(d.y + d.dy)); });
+    var color = d3.scale.category20c();
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height)
-  .append("g")
-    .attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")");
+    var partition = d3.layout.partition()
+        .value(function(d) { return d.size; });
 
-function drawsunburst (data, year) {
+    var sunarc = d3.svg.arc()
+        .startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x))); })
+        .endAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx))); })
+        .innerRadius(function(d) { return Math.max(0, y(d.y)); })
+        .outerRadius(function(d) { return Math.max(0, y(d.y + d.dy)); });
 
-d3.json("../data/datasun.json", function(error, root) {
-  if (error) throw error;
-  data = root;
-  data = data[2013]["NLD"];
-  // data = d3.values(data);
-  root = data;
-  console.log(root);
-  svg.selectAll("path")
-      .data(partition.nodes(root))
-    .enter().append("path")
-      .attr("d", arc)
-      .style("fill", function(d) {
-      console.log(d);
-      console.log((d.children ? d : d.parent).name);
-       return color((d.children ? d : d.parent).name); })
-      .on("click", click)
-    .append("title")
-      .text(function(d) { return d.name + "\n" + formatNumber(d.value); });
-});
+    var sunsvg = d3.select("#sunburst").append("svg")
+        .attr("id", "sunburstsvg")
+        .attr("width", sunwidth)
+        .attr("height", sunheight)
+      .append("g")
+        .attr("transform", "translate(" + sunwidth / 2 + "," + (sunheight / 2) + ")");
 
-function click(d) {
-  svg.transition()
-      .duration(750)
-      .tween("scale", function() {
-        var xd = d3.interpolate(x.domain(), [d.x, d.x + d.dx]),
-            yd = d3.interpolate(y.domain(), [d.y, 1]),
-            yr = d3.interpolate(y.range(), [d.y ? 20 : 0, radius]);
-        return function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); };
-      })
-    .selectAll("path")
-      .attrTween("d", function(d) { return function() { return arc(d); }; });
-}
+    datasun[year] = {}
+    data4 = d3.values(dataSunburst);
+    // console.log(data4);
+    datasun[year]['children'] = data4;
+    // console.log(datasun);
+    root = datasun[year];
+    // console.log(root);
 
-d3.select(self.frameElement).style("height", height + "px");
+    sunsvg.selectAll("path")
+        .data(partition.nodes(root))
+      .enter().append("path")
+        .attr("d", sunarc)
+        .style("fill", function(d) {
+         return color((d.children ? d : d.parent).name); })
+        .on("click", click)
+      .append("title")
+        .text(function(d) { return d.name + "\n" + formatNumber(d.value); });
 
-}
+  function click(d) {
+    sunsvg.transition()
+        .duration(750)
+        .tween("scale", function() {
+          var xd = d3.interpolate(x.domain(), [d.x, d.x + d.dx]),
+              yd = d3.interpolate(y.domain(), [d.y, 1]),
+              yr = d3.interpolate(y.range(), [d.y ? 20 : 0, sunradius]);
+          return function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); };
+        })
+      .selectAll("path")
+        .attrTween("d", function(d) { return function() { return sunarc(d); }; });
+  }
 
-drawsunburst();
+  d3.select(self.frameElement).style("height", sunheight + "px");
+
+  }
+
+

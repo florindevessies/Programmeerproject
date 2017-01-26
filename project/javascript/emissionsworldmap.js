@@ -13,11 +13,13 @@ function UpdateMap(data, year){
   colors = ['#5bc8c8', '#3fb1bc', '#368aa3', '#2d6d88', '#244f6b', '#173445', '#0c1924' ]
   data2 = data[year];
   populationdata2 = populationdata[year];
+  // console.log(populationdata2);
   var map = new Datamap({
     element: document.getElementById('container'),
     // Events for binding the map to the pie chart
     done: function DrawMap(datamap) {
       datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography){
+        // console.log(datamap.svg.select(".datamaps-subunit"));
         countrycode = geography.id;
         
         // werkt niet en ik snap niet waarom
@@ -53,15 +55,9 @@ function UpdateMap(data, year){
 
       // popup when hovering over the countries
       popupTemplate: function (geography, data) {
-        if (prevFill) {
-          d3.select(selectorCountry).style("fill", prevFill);
-        }
-        selectorCountry = "." + countrycode;
-        prevFill = d3.select(selectorCountry).style("fill")
 
-        d3.select(selectorCountry).style("fill", "000000")
         if (data) {
-          return '<div class="hoverinfo">' + '<strong>' +  data.location + '</strong>' + '<br/>' +
+          return '<div class="hoverinfo">' + '<strong>' +  data.name + '</strong>' + '<br/>' +
           'Number of inhabitants: ' + data.inhabitants +  '<br/>' +
           'CO2 emissions per capita ' + data.CO2percapita + '</div>'
         }
@@ -69,6 +65,13 @@ function UpdateMap(data, year){
           return '<div class="hoverinfo">' + '<strong>' +  geography.properties.name + '</strong>' + '<br/>' +
           'No data' +  '</div>';
         }
+                if (prevFill) {
+          d3.select(selectorCountry).style("fill", prevFill);
+        }
+        selectorCountry = "." + countrycode;
+        prevFill = d3.select(selectorCountry).style("fill")
+
+        d3.select(selectorCountry).style("fill", "000000")
       }
     },
     // fills for the data based on category (fillText)
@@ -101,11 +104,11 @@ function UpdateMap(data, year){
     },
   });
 
-  // adding info to the map
-  d3.select("#container").select('svg').append("text")
-  .attr("id", "info")
-  .attr("x", width/2)
-  .attr("y", 550)
-  .text("Click on a country to view the locations where people live")
+  // // adding info to the map
+  // d3.select("#container").select('svg').append("text")
+  // .attr("id", "info")
+  // .attr("x", width/2)
+  // .attr("y", 550)
+  // .text("Click on a country to view the locations where people live")
 }
  

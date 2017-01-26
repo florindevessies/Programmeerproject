@@ -103,13 +103,18 @@ function UpdateSlider(year) {
   year = formatDate(value);
   UpdateMap(data, year);
   drawScatterPlot(data[year], year);
-  drawpiechart(populationdata[year], countrycode,year);
+  drawpiechart(populationdata[year], countrycode, year);
+  // drawsunburst(data[year], year);
 
   if (d3.event.sourceEvent) {
     value = timeScale.invert(d3.mouse(this)[0]);
+    console.log(value);
+    year = formatDate(value);
+    console.log(year)
     UpdateMap(data, year);
     drawScatterPlot(data[year], year);
     drawpiechart(populationdata[year], countrycode, year);
+    drawsunburst(data[year], year);
 
     // keep country selected in worldmap
     // if (prevFill) {

@@ -92,12 +92,9 @@ info around the pie chart
   fill: #2c2c2c;
 }
 
-.ages {
-  font: 10px sans-serif;
-}
-
 #nodata {
-  font: 20px sans-serif;
+  font: 12px sans-serif;
+  text-align: left;
 }
 /*
 Tooltip for the Pie chart
@@ -123,7 +120,7 @@ Tooltip for the Pie chart
 }
 
 #slider {
-  position: fixed;
+/*  position: fixed;*/
   bottom: 20px;
 }
 
@@ -138,20 +135,51 @@ Tooltip for the Pie chart
 
 #piechart{
     position: relative;
-    width: 290px;
-    float: right;
 }
 
 #scatterplot{
     position: relative;
-    width: 290px;
-    float: left;
+}
+
+#sunburst{
+    position: relative;
 }
 
 #infotext
 {
-    width: auto;
-    float: left;
+    position: relative;
+}
+
+/*
+scatterplot layout
+*/
+.tooltip {
+  position: relative;
+  width: 200px;
+  height: 28px;
+  pointer-events: none;
+}
+
+/*text {
+    stroke: none;
+    font-size: .9em;
+    font:sans-serif;
+}*/
+
+g.y.axis {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+g.x.axis {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.node {
+    cursor:pointer;
 }
 
 footer {
@@ -159,12 +187,4 @@ footer {
   padding: 25px;
 }
 
-/*
-Tooltip for the scatterplot
-*/
-.tooltip {
-  position: fixed;
-  width: 200px;
-  height: 28px;
-  pointer-events: none;
-}
+

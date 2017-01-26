@@ -71,4 +71,19 @@ Working on the sunburst. I've figured that my data are almost in the right forma
 It is quite difficult, so I will have to ask many questions tomorrow.
 
 ### Day 12, tuesday 24-01-2017
-OK, the beginning of the sunburst is working.. but my data is absolutely not in the right format yet.
+OK, the beginning of the sunburst is working.. but my data is absolutely not in the right format yet. This is difficult.
+
+### Day 13, wednesday 25-01-2017
+Couldn't ask all the questions I wanted to ask yesterday, so Im stuck. Bugs:
+
+* Sunburst shizzle
+* tooltip of scatterplot not working
+* the no data message doesn't want to change to another place
+* the text block is not very informative yet
+* the CO2 emissions in the worldmap are not rounded yet
+* No tooltip yet for the piechart
+* the interactivity is not working both sides yet
+* SVGs keep changing to same size
+* footer is not at the absolute and of the page
+
+Worked on deleting the data from the scatterplot of the countries that are not present in my map, but doing that manually is not working very well. I've to ask a question about this.

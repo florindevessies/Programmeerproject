@@ -23,9 +23,9 @@ def addDataTodict(year, countrycode, location, seriesname, value):
                 data[year][countrycode] = {}
                 # making empty array to store the values of the piechart in
                 data[year][countrycode]['piechart'] = []
-                data[year][countrycode]['sunburst'] = []
+                data[year][countrycode]['children'] = []
         if location not in data[year][countrycode]:
-                data[year][countrycode]["location"] = location
+                data[year][countrycode]["name"] = location
         # countrycode is added again for the scatterplot
         if countrycode not in data[year][countrycode]:
                 data[year][countrycode]["countrycodes"] = countrycode
@@ -49,42 +49,7 @@ def addDataTodict(year, countrycode, location, seriesname, value):
                 tiny_dict['value'] = 100
                 data[year][countrycode]['piechart'].append(tiny_dict)
             # sunburst variables
-        # If there is no data available, the sunburst will show 100 percent of 'no data'
-        if seriesname == "CO2 emissions from electricity and heat production, total (% of total fuel combustion)":
-            if value != "..":                          
-                tiny_dict = {}
-                tiny_dict['name'] = "electricity"
-                tiny_dict['size'] = value
-                data[year][countrycode]['sunburst'].append(tiny_dict)
-        if seriesname == "CO2 emissions from manufacturing industries and construction (% of total fuel combustion)":
-            if value != "..":                 
-                tiny_dict = {}
-                tiny_dict['name'] = "industries"
-                tiny_dict['size'] = value
-                data[year][countrycode]['sunburst'].append(tiny_dict)
-        if seriesname == "CO2 emissions from other sectors, excluding residential buildings and commercial and public services (% of total fuel combustion)": 
-            if value != "..":               
-                tiny_dict = {}
-                tiny_dict['name'] = "other"
-                tiny_dict['size'] = value
-                data[year][countrycode]['sunburst'].append(tiny_dict)
-        if seriesname == "CO2 emissions from residential buildings and commercial and public services (% of total fuel combustion)":
-            if value != "..":                 
-                tiny_dict = {}
-                tiny_dict['name'] = "publicservices"
-                tiny_dict['size'] = value
-                data[year][countrycode]['sunburst'].append(tiny_dict)
-        if seriesname == "CO2 emissions from transport (% of total fuel combustion)":
-            if value != "..":                
-                tiny_dict = {}
-                tiny_dict['name'] = "transport"
-                tiny_dict['size'] = value
-                data[year][countrycode]['sunburst'].append(tiny_dict)
-            else:
-                tiny_dict = {}
-                tiny_dict['name'] = "nodata"
-                tiny_dict['size'] = 100
-                data[year][countrycode]['sunburst'].append(tiny_dict)
+        
         # other variables
         if seriesname == "GDP per capita (current US$)": 
                 if 'GDPpercapita' not in data[year][countrycode]:
@@ -94,6 +59,11 @@ def addDataTodict(year, countrycode, location, seriesname, value):
                         data[year][countrycode]['inhabitants'] = value
         if seriesname == "CO2 emissions (metric tons per capita)": 
                 if 'CO2percapita' not in data[year][countrycode]:
+                    if value != "..":
+                        data[year][countrycode]['CO2percapita'] = float(value)
+                    else:
+                        data[year][countrycode]['CO2percapita'] = value
+                if 'value' not in data[year][countrycode]:
                         data[year][countrycode]['CO2percapita'] = value
         if seriesname == "Urban population (% of total)": 
                 if 'percentagecities' not in data[year][countrycode]:
@@ -101,6 +71,46 @@ def addDataTodict(year, countrycode, location, seriesname, value):
         if seriesname == "GDP per capita (current US$)": 
                 if 'GDPpercapita' not in data[year][countrycode]:
                         data[year][countrycode]['GDPpercapita'] = value
+
+        # print(data[year][countrycode]['CO2percapita'])
+        # If there is no data available, the sunburst will show 100 percent of 'no data'
+        # CO2 = float(data[year][countrycode]['CO2percapita'])
+        # print CO2
+        if seriesname == "CO2 emissions from electricity and heat production, total (% of total fuel combustion)":
+            if value != "..":                          
+                tiny_dict = {}
+                tiny_dict['name'] = "electricity"
+                tiny_dict['size'] = value
+                data[year][countrycode]['children'].append(tiny_dict)
+        if seriesname == "CO2 emissions from manufacturing industries and construction (% of total fuel combustion)":
+            if value != "..":                 
+                tiny_dict = {}
+                tiny_dict['name'] = "industries"
+                tiny_dict['size'] = value
+                data[year][countrycode]['children'].append(tiny_dict)
+        if seriesname == "CO2 emissions from other sectors, excluding residential buildings and commercial and public services (% of total fuel combustion)": 
+            if value != "..":               
+                tiny_dict = {}
+                tiny_dict['name'] = "other"
+                tiny_dict['size'] = value
+                data[year][countrycode]['children'].append(tiny_dict)
+        if seriesname == "CO2 emissions from residential buildings and commercial and public services (% of total fuel combustion)":
+            if value != "..":                 
+                tiny_dict = {}
+                tiny_dict['name'] = "publicservices"
+                tiny_dict['size'] = value
+                data[year][countrycode]['children'].append(tiny_dict)
+        if seriesname == "CO2 emissions from transport (% of total fuel combustion)":
+            if value != "..":                
+                tiny_dict = {}
+                tiny_dict['name'] = "transport"
+                tiny_dict['size'] = value
+                data[year][countrycode]['children'].append(tiny_dict)
+            else:
+                tiny_dict = {}
+                tiny_dict['name'] = "nodata"
+                tiny_dict['size'] = 100
+                data[year][countrycode]['children'].append(tiny_dict)
 
 # making an array with all the years of the dataset
 years = []
@@ -123,7 +133,7 @@ with open('../project/data/data3.csv', 'rU') as infile:
                         value = row[4+i]
                         addDataTodict(year, countrycode, location, seriesname, value)
 
-# print data[2013]["AUT"]
+# print data[2013]
 for i in range (0, len(years)):
         year = years[i]
         for i in data[year]:

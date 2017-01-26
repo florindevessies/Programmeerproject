@@ -5,15 +5,18 @@ CO2 emissions and urbanization
 javascript pie chart
 
 *******************************************************/
-var width = 500,
-    height = 500,
-    radius = Math.min(width, height) / 2;
+// The piechart function that updates when a country gets clicked
+function drawpiechart (populationdata, id, year) {
+  d3.select("#piechartsvg").remove();
+  var piewidth = 300,
+    pieheight = 400,
+    pieradius = Math.min(piewidth, pieheight) / 2;
 
 var color = d3.scale.ordinal()
     .range(["#cf836e", "#bf5f40", "#8f4c30"]);
 
-var arc = d3.svg.arc()
-    .outerRadius(radius - 100)
+var piearc = d3.svg.arc()
+    .outerRadius(pieradius - 30)
     .innerRadius(0);
 
 // defines wedge size
@@ -21,51 +24,49 @@ var pie = d3.layout.pie()
     .sort(null)
     .value(function (d) { return d.value; });
 
-var svg = d3.select("#infotext").append("svg")
-    .attr("width", 200)
-    .attr("height", 200)
+var piesvg = d3.select("#piechart").append("svg")
+    .attr("id", "piechartsvg")
+    .attr("width", piewidth)
+    .attr("height", pieheight)
   .append("g")
-    .attr("transform", "translate(" + width / 1.75 + "," + height / 2 + ")");
+    .attr("transform", "translate(" + piewidth / 1.75 + "," + pieheight / 2 + ")");
 
-var svg = d3.select("#piechart").append("svg")
-    .attr("width", width)
-    .attr("height", height)
-  .append("g")
-    .attr("transform", "translate(" + width / 1.75 + "," + height / 2 + ")");
-
-// The piechart function that updates when a country gets clicked
-function drawpiechart (populationdata, id, year) {
   if (populationdata[countrycode] === undefined || populationdata[countrycode] === null) {
-      d3.selectAll(".arc").remove();      
-      d3.select("piecharttitle").remove();
+      d3.selectAll(".piearc").remove();
+      d3.selectAll(".svg").remove();
+      d3.select("#people").remove();     
+      d3.selectAll("#piecharttitle").remove();
       d3.select("#nodata").remove();
 
-        svg.append("text")
-          .attr("id", "nodata")
-          .text("no data available for this country")
-    }
+      piesvg.append("text")
+        .attr("id", "nodata")
+        .text("no data available for this country")
+  }
   else {
-    d3.selectAll(".arc").remove();
-    d3.select("#piecharttitle").remove();
+    d3.selectAll(".piearc").remove();
+    d3.selectAll(".svg").remove();
+    d3.selectAll("#piecharttitle").remove();
+    d3.select("#people").remove();  
     d3.select("#nodata").remove();
     country = populationdata[countrycode].location; 
     people = populationdata[countrycode];
     // make the pie chart for that key (country)
     node = populationdata[countrycode].piechart;
     if (node[0].value == '..') {
-      d3.selectAll(".arc").remove();      
-      d3.select("piecharttitle").remove();
+      d3.selectAll(".piearc").remove();      
+      d3.select("#piecharttitle").remove();
       d3.select("#nodata").remove();
+      d3.select("#people").remove();  
 
-        svg.append("text")
+        d3.select("#infotext").append("text")
           .attr("id", "nodata")
           .text("no data available for this country")
     }
     else if (node) {
-      var g = svg.selectAll(".arc")
+      var g = piesvg.selectAll(".piearc")
           .data(pie(node))
         .enter().append("g")
-          .attr("class", "arc")
+          .attr("class", "piearc")
           .on("mouseover", function (d) {
         d3.select("#tooltip")
             .style("left", d3.event.pageX + "px")
@@ -82,37 +83,37 @@ function drawpiechart (populationdata, id, year) {
     });
 
       g.append("path")
-          .attr("d", arc)
+          .attr("d", piearc)
           .style("fill", function(d) { return color(d.data.seriesname); });
 
       g.append("text")
           .attr("id", "pietext")
-          .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
+          .attr("transform", function (d) { return "translate(" + piearc.centroid(d) + ")"; })
           .attr("dy", ".35em")
           .style("text-anchor", "middle")
           .text(function (d) { return d.data.seriesname; });
 
-            // Adding title to the pie chart
-      g.append("text")
-          .attr("id", "piecharttitle")
-          .attr("x", 0 - (60))
-          .attr("y", 0 - (height / 2.5))
-          .attr("text-anchor", "middle")
-          .text(function (d) {
-            return "locations where people live in "; });
+      //       // Adding title to the pie chart
+      // d3.select("#infotext").append("text")
+      //     .attr("id", "piecharttitle")
+      //     .attr("x", 0 - (60))
+      //     .attr("y", 0 - (height / 2.5))
+      //     .attr("text-anchor", "middle")
+      //     .text(function (d) {
+      //       return "locations where people live in "; });
 
       // adding the country to the title
-      g.append("text")
+      d3.select("#infotext").append("text")
           .attr("id", "piecharttitle")
           .attr("x", 0 - (50))             
-          .attr("y", 0 - (height / 2.8))
+          .attr("y", 0 - (pieheight / 2.8))
           .attr("text-anchor", "middle")
-          .text(function (d) { return country; });
+          .text(function (d) { return people.name; });
 
-      g.append("text")
+      d3.select("#infotext").append("text")
           .attr("id", "people")
           .attr("x", 0 - 300)             
-          .attr("y", 0 - (height - 270))
+          .attr("y", 0 - (pieheight - 20))
           .attr("text-anchor", "middle")
           .text(function (d) {
             return "Number of inhabitants: " + people.inhabitants; });

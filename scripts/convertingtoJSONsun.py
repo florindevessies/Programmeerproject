@@ -19,6 +19,9 @@ jsonfile = open('../project/data/datasun.json', 'w')
 def addDataTodict(year, countrycode, location, seriesname, value):
         if year not in data:
                 data[year] = {}
+                # data['name'] = year
+                # data['children'] = []
+                # return data
         if countrycode not in data[year]:
                 data[year][countrycode] = {}
                 # making empty array to store the values of the piechart in
@@ -122,6 +125,7 @@ with open('../project/data/data3.csv', 'rU') as infile:
                         year = years[i]                 
                         value = row[4+i]
                         addDataTodict(year, countrycode, location, seriesname, value)
+                         
 
 # print data
 for i in range (0, len(years)):
