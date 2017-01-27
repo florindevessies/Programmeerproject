@@ -41,12 +41,6 @@ Legend layout
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/*
-text below
-*/
-p {
-	font: 13px sans-serif;
-}
 
 /*
 Pie chart
@@ -124,8 +118,7 @@ Tooltip for the Pie chart
   bottom: 20px;
 }
 
-.row
-{
+.row {
     width: 960px;
     height: auto;
     margin:0;

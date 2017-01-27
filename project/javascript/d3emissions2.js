@@ -9,9 +9,11 @@ var populationdata;
 var data;
 var countrycode;
 var year;
+var prevFill;
+var prevFillCircle;
 
 // Loading in data for the default year
-d3.json("../data/data3.json", function(error, data){
+d3.json("../data/data4.json", function(error, data){
   if (error) throw error;
    populationdata = data;
   
@@ -96,6 +98,7 @@ handle.append('text')
 slider
   .call(brush.event)
 
+
 // updating the time slider
 function UpdateSlider(year) {
   d3.selectAll("#nodata").remove();
@@ -104,18 +107,33 @@ function UpdateSlider(year) {
   UpdateMap(data, year);
   drawScatterPlot(data[year], year);
   drawpiechart(populationdata[year], countrycode, year);
-  // drawsunburst(data[year], year);
 
+  d3.select('.btn.btn-primary').on('click', function() {
+    datasun = {};
+    datasun[year] = {}
+    console.log(populationdata[year]);
+    data5 = d3.values(populationdata[year]);
+    // console.log(populationdata);
+    datasun[year]['children'] = data5;
+    // console.log(data5);
+    root = datasun[year];
+    console.log(root);
+    // drawsunburst(data[year], year);
+  }); 
+   
   if (d3.event.sourceEvent) {
+    d3.select("#sunburstsvg").remove();
     value = timeScale.invert(d3.mouse(this)[0]);
-    console.log(value);
+    // console.log(value);
     year = formatDate(value);
-    console.log(year)
+    // console.log(year)
     UpdateMap(data, year);
     drawScatterPlot(data[year], year);
     drawpiechart(populationdata[year], countrycode, year);
-    drawsunburst(data[year], year);
 
+  d3.select('.btn.btn-primary').on('click', function() {
+    // drawsunburst(data[year], year);
+  });
     // keep country selected in worldmap
     // if (prevFill) {
     //       d3.select(selectorCountry).style("fill", prevFill);

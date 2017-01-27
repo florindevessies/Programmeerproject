@@ -5,6 +5,8 @@ CO2 emissions and urbanization
 javascript world map update
 
 *******************************************************/
+var prevFill;
+var prevFillCircle
 
 // function that draws the map, and updates it if called again
 function UpdateMap(data, year){
@@ -23,17 +25,20 @@ function UpdateMap(data, year){
         countrycode = geography.id;
         
         // werkt niet en ik snap niet waarom
-        // if (prevFillCircle) {
-        //   d3.select(IDcountry).style("fill", prevFillCircle);
-        // }
+      //   if (prevFillCircle) {
+      //     d3.select(IDcountry).style("fill", prevFillCircle);
+      //   }
 
-        // IDcountry = "#" + countrycode;
-        // prevFillCircle = d3.select(IDcountry).style("fill");
-        // d3.select(IDcountry).style("fill", "000000");
+      //   IDcountry = "#" + countrycode;
+      //   if (d3.select(IDcountry).style("fill")) {
+      //   prevFillCircle = d3.select(IDcountry).style("fill");
+      // };
+      //   d3.select(IDcountry).style("fill", "000000");
         
         // add drawpiechart function here
         countrycode = geography.id;
         drawpiechart(populationdata2, countrycode, year);
+        // drawsunburst(populationdata2, countrycode, year);
         // coloring the country that is selected  in the map and removing that selection when another country is clicked
         if (prevFill) {
           d3.select(selectorCountry).style("fill", prevFill);
@@ -65,7 +70,7 @@ function UpdateMap(data, year){
           return '<div class="hoverinfo">' + '<strong>' +  geography.properties.name + '</strong>' + '<br/>' +
           'No data' +  '</div>';
         }
-                if (prevFill) {
+        if (prevFill) {
           d3.select(selectorCountry).style("fill", prevFill);
         }
         selectorCountry = "." + countrycode;
@@ -104,11 +109,5 @@ function UpdateMap(data, year){
     },
   });
 
-  // // adding info to the map
-  // d3.select("#container").select('svg').append("text")
-  // .attr("id", "info")
-  // .attr("x", width/2)
-  // .attr("y", 550)
-  // .text("Click on a country to view the locations where people live")
 }
  

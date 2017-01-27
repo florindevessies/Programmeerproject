@@ -111,28 +111,28 @@ var piesvg = d3.select("#piechart").append("svg")
           .text(function (d) { return people.name; });
 
       d3.select("#infotext").append("text")
-          .attr("id", "people")
+          .attr("id", "piecharttitle")
           .attr("x", 0 - 300)             
           .attr("y", 0 - (pieheight - 20))
           .attr("text-anchor", "middle")
           .text(function (d) {
             return "Number of inhabitants: " + people.inhabitants; });
 
-      // g.append("text")
-      //     .attr("class", "ages")
-      //     .attr("x", 0 - 300)             
-      //     .attr("y", 0 - (height - 300))
-      //     .attr("text-anchor", "middle")
-      //     .text(function (d) {
-      //       return "People living in cities: " + parseFloat(node[0].value).toFixed(1) + "%"; });
+      d3.select("#infotext").append("text")
+          .attr("id", "piecharttitle")
+          .attr("x", 0 - 300)             
+          .attr("y", 0 - (pieheight - 300))
+          .attr("text-anchor", "middle")
+          .text(function (d) {
+            return "People living in cities: " + parseFloat(node[0].value).toFixed(1) + "%"; });
 
-      // g.append("text")
-      //     .attr("class", "ages")
-      //     .attr("x", 0 - 300)             
-      //     .attr("y", 0 - (height -320))
-      //     .attr("text-anchor", "middle")
-      //     .text(function (d) {
-      //       return "people living in rural areas: " + parseFloat(node[1].value).toFixed(1) + "%"; });
+      d3.select("#infotext").append("text")
+          .attr("id", "piecharttitle")
+          .attr("x", 0 - 300)             
+          .attr("y", 0 - (pieheight -320))
+          .attr("text-anchor", "middle")
+          .text(function (d) {
+            return "people living in rural areas: " + parseFloat(node[1].value).toFixed(1) + "%"; });
 
       function type(d) {
           d.value = +d.value;

@@ -5,16 +5,14 @@
   javascript sunburst
 
   *******************************************************/
-  // based on the example of Mike Bostock, http://bl.ocks.org/mbostock/4348373
-
- 
+  // based on the example of Mike Bostock, http://bl.ocks.org/mbostock/4348373 
 
   function drawsunburst (dataSunburst, year) {
     d3.select("#sunburstsvg").remove();
-    datasun = {};
+    // datasun = {};
 
-    var sunwidth = 960,
-      sunheight = 700,
+    var sunwidth = 600,
+      sunheight = 500,
       sunradius = (Math.min(sunwidth, sunheight) / 2) - 10;
 
     var formatNumber = d3.format(",d");
@@ -43,16 +41,10 @@
       .append("g")
         .attr("transform", "translate(" + sunwidth / 2 + "," + (sunheight / 2) + ")");
 
-    datasun[year] = {}
-    data4 = d3.values(dataSunburst);
-    // console.log(data4);
-    datasun[year]['children'] = data4;
-    // console.log(datasun);
-    root = datasun[year];
-    // console.log(root);
 
+    var nodes = partition.nodes(root)
     sunsvg.selectAll("path")
-        .data(partition.nodes(root))
+      .data(nodes)
       .enter().append("path")
         .attr("d", sunarc)
         .style("fill", function(d) {

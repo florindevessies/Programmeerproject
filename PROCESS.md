@@ -84,6 +84,19 @@ Couldn't ask all the questions I wanted to ask yesterday, so Im stuck. Bugs:
 * No tooltip yet for the piechart
 * the interactivity is not working both sides yet
 * SVGs keep changing to same size
-* footer is not at the absolute and of the page
+* footer is not at the absolute end of the page
 
 Worked on deleting the data from the scatterplot of the countries that are not present in my map, but doing that manually is not working very well. I've to ask a question about this.
+
+### Day 14, thursday 26-01-2017
+Feeling sick, so came in later. But my sunburst is now appropriately working (the shares of different countries are in proportion). Sunburst:
+
+* Not interactive yet
+* is not responsive to the slider, since it costs to much energy/memory. So have to make a decision about that
+* Maybe have group of the 15 most and the rest?
+
+### Day 15, friday 27-01-2017
+OK, the sunburst will never react to my slider. New idea: making a button for the selected year and drawing the sunburst when the button is clicked. Deleting sunburst when the slider is used again. 
+
+However, the scrolling through the sunburst is not working that well yet. It keeps showing the original sunburst.
+

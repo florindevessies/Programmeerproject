@@ -7,15 +7,16 @@ javascript scatterplot
 *******************************************************/
 function drawScatterPlot(data, year) {
     var prevFill;
+    var prevFillCircle;
     var selectorCountry;
-    var scatterwidth = 450;
+    var scatterwidth = 500;
     var scatterheight= 450;
     d3.select("#scatterplot").selectAll("svg").remove();
     data = d3.values(data);
     // just to have some space around items. 
     var margins = {
-            "left": 20,
-            "right": 10,
+            "left": 30,
+            "right": 50,
             "top": 30,
             "bottom": 40
     };
@@ -30,8 +31,11 @@ function drawScatterPlot(data, year) {
     // .range(['#5bc8c8', '#3fb1bc', '#368aa3', '#2d6d88', '#244f6b', '#173445', '#0c1924']);
 
     // add svg to div
-    var scattersvg = d3.select("#scatterplot").append("svg").attr("width", scatterwidth).attr("height", scatterheight).append("g")
-        .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
+    var scattersvg = d3.select("#scatterplot").append("svg")
+    .attr("width", "100%")
+    .attr("height", scatterheight)
+    .append("g")
+    .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
 
     // add the tooltip area to the webpage
     var tooltip = d3.select("#scatterplot").append("div")
@@ -80,13 +84,12 @@ function drawScatterPlot(data, year) {
     scattersvg.selectAll("g.x.axis").call(xAxis);
 
 
+
     // creating nodes for countries
     var country = scattersvg.selectAll("g.node").data(data, function (d) {
+        // console.log(d.name);
         if ((d.percentagecities != ".." && d.CO2percapita != "..")) {
-            if (d.name != "Bangladesh" && d.name != "Isle of Man" && d.name != "Liechtenstein" && d.name != "Algeria" 
-                && d.name != "St. Kitts and Nevis" && d.name != "Cayman Islands"){
-                return d.countrycodes;
-            }            
+                return d.countrycodes;      
         }
     });
     
@@ -94,8 +97,10 @@ function drawScatterPlot(data, year) {
    var countryGroup = country.enter().append("g").attr("class", "node")
      .attr('transform', function (d) {
         if (!((d.percentagecities == "..") || (d.CO2percapita == ".."))) {
-            d3.select("#scatterplot").selectAll("node").remove();
-                return "translate(" + x(parseFloat(d.percentagecities)) + "," + y(parseFloat(d.CO2percapita)) + ")";
+            if (d.name != "Namibia"){
+                d3.select("#scatterplot").selectAll("node").remove();
+                    return "translate(" + x(parseFloat(d.percentagecities)) + "," + y(parseFloat(d.CO2percapita)) + ")";
+                }
         }
     });
 
@@ -108,7 +113,9 @@ function drawScatterPlot(data, year) {
         })
         .style("fill", function (d) {
             if (!((d.percentagecities == "..") || (d.CO2percapita == ".."))) {
-                return colors(d.fillKey);
+                if (d.name != "Namibia"){
+                    return colors(d.fillKey);
+                }
             }
         })
         .on("mouseover", function(d) {
@@ -127,9 +134,24 @@ function drawScatterPlot(data, year) {
                .style("opacity", 0);
       })
       .on("click", function(d) {
+
+        d3.select("#sunburstsvg").remove();
             populationdata2 = populationdata[year];
             countrycode = d.countrycodes;
-            // console.log(populationdata2[countrycode]);
+            datasun = {}
+            datasun[year] = {}
+
+            data4 = d3.values(populationdata2);
+            datasun[year]['children'] = data4;
+            root = datasun[year];
+            for (var i = 0; i < data4.length; i++){
+                if (data4[i]["countrycodes"] == countrycode) {
+                    console.log(data4[i]);
+                    drawsunburst(data4[i]);
+                }
+            }
+            
+            // color country on map
             if (prevFill) {
                 d3.select(selectorCountry).style("fill", prevFill);
             }
@@ -138,9 +160,26 @@ function drawScatterPlot(data, year) {
 
             d3.select(selectorCountry).style("fill", "000000");
 
+            // color country in scatterplot
+            if (prevFillCircle) {
+                d3.select(IDcountry).style("fill", prevFillCircle);
+            }
+
+            IDcountry = "#" + countrycode;
+            prevFillCircle = d3.select(IDcountry).style("fill");
+            d3.select(IDcountry).style("fill", "000000");
+
 
             drawpiechart(populationdata2, countrycode, year);
+            // not sure how to select the right country
+            // drawsunburst(datasun, countrycode, year);
         });
+
+      d3.select("#NAM").remove();
+      d3.select("#PRI").remove();
+      d3.select("#ABW").remove();
+      d3.select("#PLW").remove();
+      d3.select("#TCA").remove();
     ;
 
 }
