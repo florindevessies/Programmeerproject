@@ -110,29 +110,25 @@ function UpdateSlider(year) {
 
   d3.select('.btn.btn-primary').on('click', function() {
     datasun = {};
-    datasun[year] = {}
-    console.log(populationdata[year]);
+    datasun["name"] = year;
+    datasun["children"] = {};
     data5 = d3.values(populationdata[year]);
-    // console.log(populationdata);
-    datasun[year]['children'] = data5;
-    // console.log(data5);
-    root = datasun[year];
-    console.log(root);
-    // drawsunburst(data[year], year);
+    datasun["children"] = data5;
+    root = datasun;
+    drawsunburst(data[year], year, datasun);
+
   }); 
    
   if (d3.event.sourceEvent) {
     d3.select("#sunburstsvg").remove();
     value = timeScale.invert(d3.mouse(this)[0]);
-    // console.log(value);
     year = formatDate(value);
-    // console.log(year)
     UpdateMap(data, year);
     drawScatterPlot(data[year], year);
     drawpiechart(populationdata[year], countrycode, year);
 
   d3.select('.btn.btn-primary').on('click', function() {
-    // drawsunburst(data[year], year);
+    drawsunburst(data[year], year, datasun);
   });
     // keep country selected in worldmap
     // if (prevFill) {
@@ -154,7 +150,6 @@ function UpdateSlider(year) {
 
   handle.attr("transform", "translate(" + timeScale(value) + ",0)");
   handle.select('text').text(year);
-
 
 }
 

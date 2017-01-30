@@ -100,3 +100,6 @@ OK, the sunburst will never react to my slider. New idea: making a button for th
 
 However, the scrolling through the sunburst is not working that well yet. It keeps showing the original sunburst.
 
+## Week 4
+### Day 16, monday 30-01-2017
+Working on the sunburst today. It is interactive with the map now, and titles are added but super ugly.  Further layout seems to be quite difficult, so now I've to figure what is most important to fix in the coming days.

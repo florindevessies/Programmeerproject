@@ -21,7 +21,6 @@ function UpdateMap(data, year){
     // Events for binding the map to the pie chart
     done: function DrawMap(datamap) {
       datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography){
-        // console.log(datamap.svg.select(".datamaps-subunit"));
         countrycode = geography.id;
         
         // werkt niet en ik snap niet waarom
@@ -38,6 +37,19 @@ function UpdateMap(data, year){
         // add drawpiechart function here
         countrycode = geography.id;
         drawpiechart(populationdata2, countrycode, year);
+        datasun = {}            
+        datasun["name"] = year;
+        datasun["children"] = {}
+        data4 = d3.values(populationdata[year]);
+        datasun['children'] = data4;
+        root = datasun;
+        for (var i = 0; i < data4.length; i++){
+                if (data4[i]["countrycodes"] == countrycode) {
+                    console.log(data4[i]);
+                    drawsunburst(datasun, year, data4[i]);
+                    // clickFunction(data4[i]);
+                }
+            }
         // drawsunburst(populationdata2, countrycode, year);
         // coloring the country that is selected  in the map and removing that selection when another country is clicked
         if (prevFill) {
@@ -64,7 +76,7 @@ function UpdateMap(data, year){
         if (data) {
           return '<div class="hoverinfo">' + '<strong>' +  data.name + '</strong>' + '<br/>' +
           'Number of inhabitants: ' + data.inhabitants +  '<br/>' +
-          'CO2 emissions per capita ' + data.CO2percapita + '</div>'
+          'CO2 emissions in metric tons per capita: ' + data.CO2percapita + '</div>'
         }
         else {
           return '<div class="hoverinfo">' + '<strong>' +  geography.properties.name + '</strong>' + '<br/>' +

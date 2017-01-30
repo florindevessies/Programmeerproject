@@ -74,7 +74,7 @@ def addDataTodict(year, countrycode, location, seriesname, value):
     if seriesname == "CO2 emissions (metric tons per capita)": 
         if 'CO2percapita' not in data[year][countrycode]:
             if value != "..":
-                data[year][countrycode]['CO2percapita'] = float(value)
+                data[year][countrycode]['CO2percapita'] = format(float(value), '.3f')
             else:
                 data[year][countrycode]['CO2percapita'] = value
 

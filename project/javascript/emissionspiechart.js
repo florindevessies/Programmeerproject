@@ -8,12 +8,12 @@ javascript pie chart
 // The piechart function that updates when a country gets clicked
 function drawpiechart (populationdata, id, year) {
   d3.select("#piechartsvg").remove();
-  var piewidth = 300,
+  var piewidth = 200,
     pieheight = 400,
     pieradius = Math.min(piewidth, pieheight) / 2;
 
 var color = d3.scale.ordinal()
-    .range(["#cf836e", "#bf5f40", "#8f4c30"]);
+    .range(['#7fc97f','#beaed4','#fdc086']);
 
 var piearc = d3.svg.arc()
     .outerRadius(pieradius - 30)
@@ -26,10 +26,23 @@ var pie = d3.layout.pie()
 
 var piesvg = d3.select("#piechart").append("svg")
     .attr("id", "piechartsvg")
-    .attr("width", piewidth)
+    .attr("width", "100%")
     .attr("height", pieheight)
   .append("g")
     .attr("transform", "translate(" + piewidth / 1.75 + "," + pieheight / 2 + ")");
+
+var tooltip = d3.select('#piechartsvg')                              
+          .append('div')                                               
+          .attr('class', 'tooltip');                                    
+                      
+        tooltip.append('div')                                           
+          .attr('class', 'label');                                      
+             
+        tooltip.append('div')                                          
+          .attr('class', 'count');                                      
+
+        tooltip.append('div')                                          
+          .attr('class', 'percent');
 
   if (populationdata[countrycode] === undefined || populationdata[countrycode] === null) {
       d3.selectAll(".piearc").remove();
@@ -68,14 +81,15 @@ var piesvg = d3.select("#piechart").append("svg")
         .enter().append("g")
           .attr("class", "piearc")
           .on("mouseover", function (d) {
-        d3.select("#tooltip")
-            .style("left", d3.event.pageX + "px")
-            .style("top", d3.event.pageY + "px")
-            .style("opacity", 1)
-            .select("#value")
-            // converting data to float, rounding on 1 decimal
-            .text(parseFloat(d.data.value).toFixed(1));
-    })
+            // var total = d3.sum(dataset.map(function(d) {              // NEW
+            //   return d.count;                                           // NEW
+            // }));                                                        // NEW
+            // var percent = Math.round(1000 * d.data.count / total) / 10; // NEW
+            // tooltip.select('.label').html(d.data.label);                // NEW
+            // tooltip.select('.count').html(d.data.count);                // NEW
+            // tooltip.select('.percent').html(percent + '%');             // NEW
+            // tooltip.style('display', 'block');                          // NEW
+          })                                    
         .on("mouseout", function () {
         // Hide the tooltip
         d3.select("#tooltip")

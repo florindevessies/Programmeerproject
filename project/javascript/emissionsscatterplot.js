@@ -22,13 +22,9 @@ function drawScatterPlot(data, year) {
     };
     
     // color scale
-    var colors = d3.scale.category10();
-    // console.log(colors);
-    // colors = ['#5bc8c8', '#3fb1bc', '#368aa3', '#2d6d88', '#244f6b', '#173445', '#0c1924' ]
-    // var colors = d3.scale
-    // .linear()
-    // .domain([0, 70])
-    // .range(['#5bc8c8', '#3fb1bc', '#368aa3', '#2d6d88', '#244f6b', '#173445', '#0c1924']);
+    var colors = d3.scale.ordinal()
+    .domain(["A", "B", "C", "D", "E", "F", "G"])
+    .range(['#5bc8c8', '#3fb1bc', '#368aa3', '#2d6d88', '#244f6b', '#173445', '#0c1924']);
 
     // add svg to div
     var scattersvg = d3.select("#scatterplot").append("svg")
@@ -83,8 +79,6 @@ function drawScatterPlot(data, year) {
     scattersvg.selectAll("g.y.axis").call(yAxis);
     scattersvg.selectAll("g.x.axis").call(xAxis);
 
-
-
     // creating nodes for countries
     var country = scattersvg.selectAll("g.node").data(data, function (d) {
         // console.log(d.name);
@@ -138,16 +132,16 @@ function drawScatterPlot(data, year) {
         d3.select("#sunburstsvg").remove();
             populationdata2 = populationdata[year];
             countrycode = d.countrycodes;
-            datasun = {}
-            datasun[year] = {}
-
-            data4 = d3.values(populationdata2);
-            datasun[year]['children'] = data4;
-            root = datasun[year];
+            datasun = {}            
+            datasun["name"] = year;
+            datasun["children"] = {}
+            data4 = d3.values(populationdata[year]);
+            datasun['children'] = data4;
+            root = datasun;
             for (var i = 0; i < data4.length; i++){
                 if (data4[i]["countrycodes"] == countrycode) {
                     console.log(data4[i]);
-                    drawsunburst(data4[i]);
+                    drawsunburst(datasun, year, data4[i]);
                 }
             }
             
@@ -169,10 +163,7 @@ function drawScatterPlot(data, year) {
             prevFillCircle = d3.select(IDcountry).style("fill");
             d3.select(IDcountry).style("fill", "000000");
 
-
             drawpiechart(populationdata2, countrycode, year);
-            // not sure how to select the right country
-            // drawsunburst(datasun, countrycode, year);
         });
 
       d3.select("#NAM").remove();
