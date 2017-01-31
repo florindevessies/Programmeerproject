@@ -20,26 +20,15 @@ HTML
         <script src="../javascript/datamaps.world.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/d3emissions.css"/>
 
-        <!-- slider style -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-        <link rel="stylesheet" href="../css/d3.slider.css" />
-        <script src="../javascript/d3.slider.js"></script>
-
         <!-- Bostock's slider brush: http://bl.ocks.org/mbostock/6452972-->
-        <!DOCTYPE html>
-        <meta charset="utf-8">
-        
-          <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-          <link rel="stylesheet" href="../css/slider.css">
-        
+        <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../css/slider.css">        
         
 
         <!-- Bootstrap info -->
         <!-- Latest compiled and minified CSS -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -56,60 +45,71 @@ HTML
         </div>
     </div>
 
+    <div class="container-fluid bg-1 text-center">
+         <h3 class="margin">General introduction</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+    </div>
     <!-- creating divs for piechart and scatterplot -->
-    <div class="container"> 
-        <div class = "row">
-            <div class="col-lg-9">
-                <div id="container" style="position: relative; width: 100%; height: 450px;"></div>
-                <script class="map"></script>
-            </div>
-            <div class="col-lg-3">
-                <div id="piechart"></div>
+        <div class="container bg-2">
+            <div class = "row">
+                    <div class="col-md-12">
+                        <div id="container" style="position: relative; width: 100%; height: 550px;"></div>
+                        <script class="map"></script>
+                    </div>
             </div>
         </div>
-   
+
+    <div class="second">
+
+        <div class="container-fluid bg-3 text-center">    
+            <div class = "row">
+                <div class="col-lg-12">
+                    <div id ="slider"> </div>
+                </div>            
+            </div>
+        </div>
+    
+    <div class="container bg-4">
         <div class = "row">
             <div class="col-lg-6">
-                <div id ="slider"> </div>
-            </div>
+                <div id="scatterplottitle"></div>
+            </div>            
 
             <div class="col-lg-6">
-                <div id ="slider"> </div>
-            </div>   
-        </div>
+                <div id ="pietitle"></div>
+            </div> 
+        </div> 
 
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-6">
                 <div id="scatterplot"></div>
-            </div>
-
-            <div class="col-lg-2">
-                <div id="infotext"></div>
-                <button type="button" class="btn btn-primary">Draw sunburst</button>
-            </div>
-        
-            <div class="col-lg-5">
-                <div id ="sunburst"></div>
             </div> 
-            <!-- <div class="col-md-5">
-                <div id="piechart"></div>
-            </div> -->
-        </div>
 
-        <div class = "row">
-            <!-- <div class="col-md-12">
-                <div id ="sunburst"> 
-                    <button type="button" class="btn btn-primary">Draw sunburst</button>
-                </div>
-            </div>  --> 
-        </div> 
+            <div class="col-lg-6">
+                <div id="piechart"></div>
+            </div>             
+        </div>
+    </div>
     </div>
 
+    <div class="container-fluid bg-5 text-center">
+        <div class="row">
+            <div class="col-lg-2">                
+                <button type="button" class="btn btn-primary">Draw sunburst</button>
+            </div>  
+
+            <div class="col-lg-10">
+                <div id ="sunburst"></div>
+            </div> 
+        </div>
+    </div>
+        
+
         <script src="../javascript/emissionssunburst.js"></script>
-        <script src="../javascript/d3emissions2.js"></script>
-        <script src="../javascript/emissionsworldmap.js"></script>
-        <script src="../javascript/emissionspiechart.js"></script>        
+        <script src="../javascript/d3emissions2.js"></script>    
         <script src="../javascript/emissionsscatterplot.js"></script>
+        <script src="../javascript/emissionsworldmap.js"></script>
+        <script src="../javascript/emissionspiechart.js"></script>    
 
         <div id="tooltip" class="hidden">
             <p><strong>Percentage of inhabitants</strong>

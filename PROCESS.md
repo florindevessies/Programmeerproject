@@ -80,11 +80,11 @@ Couldn't ask all the questions I wanted to ask yesterday, so Im stuck. Bugs:
 * tooltip of scatterplot not working
 * the no data message doesn't want to change to another place
 * the text block is not very informative yet
-* the CO2 emissions in the worldmap are not rounded yet
+* the CO2 emissions in the worldmap are not rounded yet - fixed
 * No tooltip yet for the piechart
 * the interactivity is not working both sides yet
-* SVGs keep changing to same size
-* footer is not at the absolute end of the page
+* SVGs keep changing to same size - fixed
+* footer is not at the absolute end of the page - fixed
 
 Worked on deleting the data from the scatterplot of the countries that are not present in my map, but doing that manually is not working very well. I've to ask a question about this.
 
@@ -103,3 +103,16 @@ However, the scrolling through the sunburst is not working that well yet. It kee
 ## Week 4
 ### Day 16, monday 30-01-2017
 Working on the sunburst today. It is interactive with the map now, and titles are added but super ugly.  Further layout seems to be quite difficult, so now I've to figure what is most important to fix in the coming days.
+
+### Day 17, tuesday 31-01-2017
+Layout is superugly.
+questions:
+* not entire width of page is used somehow: why? - fixed
+* cannot get computed style of null - fixed
+* onhover of worldmap is not working after one click
+* if worldmap is clicked, scroll down - fixed
+* css cleaning - fixed
+* random errors: drawscatterplot is not defined - Sacha says I don't need to fix that
+*
+
+report time.

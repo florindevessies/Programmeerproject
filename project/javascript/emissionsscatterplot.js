@@ -9,9 +9,10 @@ function drawScatterPlot(data, year) {
     var prevFill;
     var prevFillCircle;
     var selectorCountry;
-    var scatterwidth = 500;
+    var scatterwidth = 480;
     var scatterheight= 450;
     d3.select("#scatterplot").selectAll("svg").remove();
+    d3.select("#scattertitle").remove();
     data = d3.values(data);
     // just to have some space around items. 
     var margins = {
@@ -53,23 +54,23 @@ function drawScatterPlot(data, year) {
     .range([scatterheight - margins.top - margins.bottom, 0]);
 
     // Add to svg component
-    scattersvg.append("g").attr("class", "x axis").attr("transform", "translate(0," + y.range()[0] + ")");
-    scattersvg.append("g").attr("class", "y axis")
-    .append("text")
-      .attr("fill", "#000")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", "0.71em")
-      .style("text-anchor", "end")
-      .text("CO2 emissions per capita");
-
-    // X axis label
+    scattersvg.append("g").attr("class", "x axis")
+    .attr("transform", "translate(0," + y.range()[0] + ")")
     scattersvg.append("text")
         .attr("fill", "#000")
         .attr("text-anchor", "end")
         .attr("x", scatterwidth / 1.8)
         .attr("y", scatterheight - 34)
         .text("percentage living in cities");
+
+    scattersvg.append("g").attr("class", "y axis")
+    scattersvg.append("text")
+      .attr("fill", "#000")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .style("text-anchor", "end")
+      .text("CO2 emissions per capita");    
 
     // define axes
     var xAxis = d3.svg.axis().scale(x).orient("bottom").tickPadding(2);
@@ -114,12 +115,12 @@ function drawScatterPlot(data, year) {
         })
         .on("mouseover", function(d) {
           d3.select(this).attr("r", 10).style("opacity", 0.7);
-          tooltip.transition()
-               .duration(200)
-               .style("opacity", .9);
-          tooltip.html(d["location"])
-               .style("left", (d3.event.pageX + 5) + "px")
-               .style("top", (d3.event.pageY - 28) + "px");
+          // tooltip.transition()
+          //      .duration(200)
+          //      .style("opacity", .9);
+          // tooltip.html(d["location"])
+          //      .style("left", (d3.event.pageX + 5) + "px")
+          //      .style("top", (d3.event.pageY - 28) + "px");
       })
       .on("mouseout", function(d) {
           d3.select(this).attr("r", 5).style("opacity", 1);
@@ -145,15 +146,6 @@ function drawScatterPlot(data, year) {
                 }
             }
             
-            // color country on map
-            if (prevFill) {
-                d3.select(selectorCountry).style("fill", prevFill);
-            }
-            selectorCountry = "." + countrycode;            
-            prevFill = d3.select(selectorCountry).style("fill");
-
-            d3.select(selectorCountry).style("fill", "000000");
-
             // color country in scatterplot
             if (prevFillCircle) {
                 d3.select(IDcountry).style("fill", prevFillCircle);
@@ -165,6 +157,11 @@ function drawScatterPlot(data, year) {
 
             drawpiechart(populationdata2, countrycode, year);
         });
+
+      d3.select("#scatterplottitle").append("text")
+        .attr("id", "scattertitle")
+        .html("CO2 emissions per capita and percentage of inhabitants living in cities per country in " +
+        "<b>" + year + "</b>");
 
       d3.select("#NAM").remove();
       d3.select("#PRI").remove();

@@ -18,9 +18,10 @@
 
   function drawsunburst (dataSunburst, year, countryData) {
     d3.select("#sunburstsvg").remove();
+    d3.select("#suntitle").remove();
 
-    var sunwidth = 380,
-      sunheight = 380,
+    var sunwidth = 600,
+      sunheight = 600,
       sunradius = (Math.min(sunwidth, sunheight) / 2) - 10;
 
     var formatNumber = d3.format(",d");
@@ -166,7 +167,7 @@ var computeTextRotationFunction = function computeTextRotation(d, context) {
       .enter().append("path")
         .attr("d", sunarc)
         .style("fill", function(d) {
-         return color((d.children ? d : d.parent).name); })
+         return color(d.name); })
         .on("click", clickFunction);
 
 
@@ -201,7 +202,9 @@ var computeTextRotationFunction = function computeTextRotation(d, context) {
       .on("mouseover", doHoverFunction)
       .on("mouseout", unDoHoverFunction);
 
-
+    d3.select("#sunbursttitle").append("text")
+        .attr("id", "suntitle")
+        .text("sources of emissions in " + year)
 
 
   d3.select(self.frameElement).style("height", sunheight + "px");

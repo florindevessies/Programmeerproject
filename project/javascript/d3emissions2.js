@@ -27,7 +27,7 @@ var margin = {
     bottom: 50,
     left: 50
   },
-  width = 500 - margin.left - margin.right,
+  width = 1000 - margin.left - margin.right,
   height = 150 - margin.bottom - margin.top;
 
 // scale function
@@ -115,7 +115,12 @@ function UpdateSlider(year) {
     data5 = d3.values(populationdata[year]);
     datasun["children"] = data5;
     root = datasun;
-    drawsunburst(data[year], year, datasun);
+
+    // for (var i = 0; i < data5.length; i++){
+    //   if (data5[i]["countrycodes"] == countrycode) {
+    //     drawsunburst(datasun, year, data5[i]);
+    //   }
+    // }
 
   }); 
    
@@ -128,6 +133,12 @@ function UpdateSlider(year) {
     drawpiechart(populationdata[year], countrycode, year);
 
   d3.select('.btn.btn-primary').on('click', function() {
+    datasun = {};
+    datasun["name"] = year;
+    datasun["children"] = {};
+    data5 = d3.values(populationdata[year]);
+    datasun["children"] = data5;
+    root = datasun;
     drawsunburst(data[year], year, datasun);
   });
     // keep country selected in worldmap
@@ -152,7 +163,5 @@ function UpdateSlider(year) {
   handle.select('text').text(year);
 
 }
-
-
 });
 
