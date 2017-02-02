@@ -146,6 +146,18 @@ function drawScatterPlot(data, year) {
                 }
             }
             
+            if (prevFill) {
+              d3.select(selectorCountry).style("fill", prevFill);
+            }
+            selectorCountry = "." + countrycode;
+            if(!d3.select(selectorCountry).empty()){
+                if (d3.select(selectorCountry).style("fill")) {
+                    prevFill = d3.select(selectorCountry).style("fill");
+                };
+            }
+            
+            d3.select(selectorCountry).style("fill", "000000");
+
             // color country in scatterplot
             if (prevFillCircle) {
                 d3.select(IDcountry).style("fill", prevFillCircle);
