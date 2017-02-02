@@ -10,11 +10,30 @@ import csv
 import json
 # from math import sqrt
 
-# Making dictionary to store the countries with happiness
+# Making dictionary to store the countries 
 data = {}
 # Creating JSONfile
 jsonfile = open('../project/data/data4.json', 'w')
 
+def AddPieChartVariables (year, countrycode, seriesname, value):
+    # pie chart variables      
+    if seriesname == "Urban population (% of total)" and value != "..":
+        # if value != "..":                
+            tiny_dict = {}
+            tiny_dict['seriesname'] = "urban"
+            tiny_dict['value'] = value               
+            data[year][countrycode]['piechart'].append(tiny_dict)
+    if seriesname == "Rural population (% of total population)": 
+        if value != "..":               
+            tiny_dict = {}
+            tiny_dict['seriesname'] = "rural"
+            tiny_dict['value'] = value
+            data[year][countrycode]['piechart'].append(tiny_dict)
+        else:
+            tiny_dict = {}
+            tiny_dict['seriesname'] = "nodata"
+            tiny_dict['value'] = 100
+            data[year][countrycode]['piechart'].append(tiny_dict)
 
 # Function that checks if the input is a number
 def is_number(s):
@@ -39,25 +58,7 @@ def addDataTodict(year, countrycode, location, seriesname, value):
     if countrycode not in data[year][countrycode]:
         data[year][countrycode]["countrycodes"] = countrycode
 
-    # pie chart variables      
-    if seriesname == "Urban population (% of total)":
-        if value != "..":                
-            tiny_dict = {}
-            tiny_dict['seriesname'] = "urban"
-            tiny_dict['value'] = value               
-            data[year][countrycode]['piechart'].append(tiny_dict)
-    if seriesname == "Rural population (% of total population)": 
-        if value != "..":               
-            tiny_dict = {}
-            tiny_dict['seriesname'] = "rural"
-            tiny_dict['value'] = value
-            data[year][countrycode]['piechart'].append(tiny_dict)
-        else:
-            tiny_dict = {}
-            tiny_dict['seriesname'] = "nodata"
-            tiny_dict['value'] = 100
-            data[year][countrycode]['piechart'].append(tiny_dict)
-                
+    AddPieChartVariables(year, countrycode, seriesname, value)           
     # other variables
     if seriesname == "GDP per capita (current US$)": 
         if 'GDPpercapita' not in data[year][countrycode]:
@@ -119,12 +120,6 @@ def addDataTodict(year, countrycode, location, seriesname, value):
             tiny_dict['name'] = "nodata"
             tiny_dict['size'] = (data[year][countrycode]['CO2percapita'])
             data[year][countrycode]['children'].append(tiny_dict)
-        
-        # print(data[year][countrycode]['CO2percapita'])
-        # If there is no data available, the sunburst will show 100 percent of 'no data'
-        # CO2 = float(data[year][countrycode]['CO2percapita'])
-        # print CO2
-        
 
 # making an array with all the years of the dataset
 years = []
