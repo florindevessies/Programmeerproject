@@ -6,16 +6,13 @@ javascript scatterplot
 
 *******************************************************/
 // tooltip gathered from: http://bl.ocks.org/weiglemc/6185069
+
+var scatterwidth = 480;
+var scatterheight= 450;
 function drawScatterPlot(data, year) {
-    var prevFill;
-    var prevFillCircle;
-    var selectorCountry;
-    var scatterwidth = 480;
-    var scatterheight= 450;
     d3.select("#scatterplot").selectAll("svg").remove();
     d3.select("#scattertitle").remove();
-    data = d3.values(data);
-    // just to have some space around items. 
+    data = d3.values(data); 
     var margins = {
             "left": 30,
             "right": 50,
@@ -133,14 +130,14 @@ function drawScatterPlot(data, year) {
 
         d3.select("#sunburstsvg").remove();
             populationdata2 = populationdata[year];
-            countrycode = d.countrycodes;
-            
-            // worldmap
-            worldmapSelected(countrycode);
+            countrycode = d.countrycodes;     
 
-            scatterplotSelected(countrycode);
+        // worldmap
+        worldmapSelected(countrycode);
 
-            drawpiechart(populationdata2, countrycode, year);
+        scatterplotSelected(countrycode);
+
+        drawpiechart(populationdata2, countrycode, year);
         });
 
       d3.select("#scatterplottitle").append("text")
@@ -153,6 +150,4 @@ function drawScatterPlot(data, year) {
       d3.select("#ABW").remove();
       d3.select("#PLW").remove();
       d3.select("#TCA").remove();
-    ;
-
 }
