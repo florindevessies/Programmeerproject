@@ -83,6 +83,21 @@ def AddSunBurstVariables(year, countrycode, seriesname, value):
             tiny_dict['size'] = (data[year][countrycode]['CO2percapita'])
             data[year][countrycode]['children'].append(tiny_dict)
 
+def AddExtraVariables(year, countrycode, seriesname, value):           
+    # other variables
+    if seriesname == "GDP per capita (current US$)" and 'GDPpercapita' not in data[year][countrycode]: 
+        data[year][countrycode]['GDPpercapita'] = value
+    if seriesname == "Population, total" and 'inhabitants' not in data[year][countrycode]: 
+        data[year][countrycode]['inhabitants'] = value
+    if seriesname == "Urban population (% of total)" and 'percentagecities' not in data[year][countrycode]: 
+        data[year][countrycode]['percentagecities'] = value
+    if seriesname == "CO2 emissions (metric tons per capita)": 
+        if 'CO2percapita' not in data[year][countrycode]:
+            if value != "..":
+                data[year][countrycode]['CO2percapita'] = format(float(value), '.3f')
+            else:
+                data[year][countrycode]['CO2percapita'] = value
+
 
 
 # Function to add data to a dictionary
@@ -101,20 +116,9 @@ def addDataTodict(year, countrycode, location, seriesname, value):
         data[year][countrycode]["countrycodes"] = countrycode
 
     AddPieChartVariables(year, countrycode, seriesname, value)
-    AddSunBurstVariables(year, countrycode, seriesname, value)           
-    # other variables
-    if seriesname == "GDP per capita (current US$)" and 'GDPpercapita' not in data[year][countrycode]: 
-        data[year][countrycode]['GDPpercapita'] = value
-    if seriesname == "Population, total" and 'inhabitants' not in data[year][countrycode]: 
-        data[year][countrycode]['inhabitants'] = value
-    if seriesname == "Urban population (% of total)" and 'percentagecities' not in data[year][countrycode]: 
-        data[year][countrycode]['percentagecities'] = value
-    if seriesname == "CO2 emissions (metric tons per capita)": 
-        if 'CO2percapita' not in data[year][countrycode]:
-            if value != "..":
-                data[year][countrycode]['CO2percapita'] = format(float(value), '.3f')
-            else:
-                data[year][countrycode]['CO2percapita'] = value
+    AddSunBurstVariables(year, countrycode, seriesname, value)
+    AddExtraVariables(year, countrycode, seriesname, value)
+
 
 
 
