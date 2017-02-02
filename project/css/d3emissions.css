@@ -79,6 +79,14 @@ footer {
 worldmap layout
 corresponding to emissionsworldmap.js
 ***************************************/
+.worldtitle {
+  margin-left: 43%;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
 .datamaps-subunit {
   fill-opacity: 1;
 }
@@ -103,8 +111,8 @@ corresponding to emissionspiechart.js
 /*
 Pie chart
 */
-#pietitle {
-  font-size: 16px:;
+#pietitles {
+  font-size: 18px;
 }
 
 #piechart {
@@ -122,7 +130,6 @@ Pie chart
 .piearc path {
   stroke: #fff;
 }
-
 
 /*
 Tooltip for the pie chart
@@ -164,8 +171,8 @@ corresponding to emissionsscatterplot.js
     position: relative;
 }
 
-#scattertitle {
-  font: sans-serif;
+.scattertitle {
+  font-family: sans-serif;
   font-size: 18px;
   text-align: center;
 }

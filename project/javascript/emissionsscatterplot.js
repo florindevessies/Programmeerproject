@@ -10,7 +10,7 @@ var scatterwidth = 480;
 var scatterheight= 450;
 function drawScatterPlot(data, year) {
     d3.select("#scatterplot").selectAll("svg").remove();
-    d3.select("#scattertitle").remove();
+    d3.select(".scattertitle").remove();
     data = d3.values(data); 
     var margins = {
             "left": 30,
@@ -128,19 +128,19 @@ function drawScatterPlot(data, year) {
       .on("click", function(d) {
 
         d3.select("#sunburstsvg").remove();
-            populationdata2 = populationdata[year];
-            countrycode = d.countrycodes;     
+        populationdata2 = populationdata[year];
+        countrycode = d.countrycodes;  
 
-        // worldmap
+        // show border on worldmap
         worldmapSelected(countrycode);
-
+        // highlight border in scatterplot
         scatterplotSelected(countrycode);
-
+        // draw pie chart
         drawpiechart(populationdata2, countrycode, year);
         });
 
       d3.select("#scatterplottitle").append("text")
-        .attr("id", "scattertitle")
+        .attr("class", "scattertitle")
         .html("CO2 emissions per capita and percentage of inhabitants living in cities per country in " +
         "<b>" + year + "</b>");
 

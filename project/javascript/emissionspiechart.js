@@ -8,6 +8,7 @@ javascript pie chart
 // The piechart function that updates when a country gets clicked
 function drawpiechart (populationdata, id, year) {
   d3.select("#piechartsvg").remove();
+  d3.select("#nodata").remove();
   var piewidth = 350,
     pieheight = 450,
     pieradius = Math.min(piewidth, pieheight) / 2;
@@ -33,25 +34,22 @@ function drawpiechart (populationdata, id, year) {
 
   // add the tooltip area to the webpage
   var tooltip = d3.select("body").append("div")
-        .attr("class", "tooltip")
+        .attr("id", "tooltip")
         .style("opacity", 0);
 
+  // of no data available, give message
   if (populationdata[countrycode] === undefined || populationdata[countrycode] === null) {
-    d3.selectAll(".piearc").remove();
-    d3.selectAll(".svg").remove();  
-    d3.selectAll("#piecharttitle").remove();
-    d3.select("#nodata").remove();
+    d3.selectAll(".piearc").remove(); 
+    d3.select("#pietitles").remove();
 
     piesvg.append("text")
       .attr("id", "nodata")
-      .text("no data available for this country")
-}
+      .text("Select a (different) country")
+  }
 
+  // if available, draw chart
   else {
-
     d3.selectAll(".piearc").remove();
-    d3.selectAll(".svg").remove();
-    d3.select("#nodata").remove();
     d3.select("#pietitles").remove();
     country = populationdata[countrycode].name; 
     people = populationdata[countrycode];
@@ -64,13 +62,13 @@ function drawpiechart (populationdata, id, year) {
     node = populationdata[countrycode].piechart;
     if (node[0].value == '..') {
       d3.selectAll(".piearc").remove();
-      d3.select("#nodata").remove();
     }
     else if (node) {
       var g = piesvg.selectAll(".piearc")
           .data(pie(node))
         .enter().append("g")
         .attr("class", "piearc")
+        // on mouseover, show info
         .on("mouseover", function(d) {
           d3.select(this).attr("r", 10).style("opacity", 0.7);
           tooltip.transition()
@@ -87,26 +85,18 @@ function drawpiechart (populationdata, id, year) {
             .style("opacity", 0);
       });
 
+      // color pie chart based on seriesname
       g.append("path")
           .attr("d", piearc)
           .style("fill", function(d) { return color(d.data.seriesname); });
 
+      // append seriesname
       g.append("text")
           .attr("id", "pietext")
           .attr("transform", function (d) { return "translate(" + piearc.centroid(d) + ")"; })
           .attr("dy", ".35em")
           .style("text-anchor", "middle")
-          .text(function (d) { return d.data.seriesname; });
-
-      // Adding title to the pie chart
-      d3.select("#piecharttitle").append("text")
-          .attr("id", "pietitle")
-          .attr("text-anchor", "middle")
-          .text(function (d) {
-            console.log(d)
-            return "locations where people live in " + d.name; });
-
-      
+          .text(function (d) { return d.data.seriesname; });      
 
       function type(d) {
           d.value = +d.value;

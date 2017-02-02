@@ -141,8 +141,8 @@ Still to fix:
 ### Day 19, thursday 02-02-2017
 holy shit, to do:
 
-* report
-* readme
+* report - fixed
+* readme - fixed
 * introduction text - fixed
 * navbar - fixed
 * bettercode - somewhat fixed
@@ -154,4 +154,7 @@ code:
 * sunburst - center - fixed
 * sunburst - onhover show percentages
 * no data message piechart
-* 
+* select a country message
+* if no sunburst can be drawn, show info
+* COMMENT!
+* color dots differently - fixed

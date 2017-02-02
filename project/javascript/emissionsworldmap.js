@@ -12,6 +12,7 @@ var prevFillCircle;
 function UpdateMap(data, year){
   d3.select("#container").selectAll("svg").remove();
   d3.select(".datamaps-legend").remove();
+   d3.select(".worldtitle").remove();
   colors = ['#5bc8c8', '#3fb1bc', '#368aa3', '#2d6d88', '#244f6b', '#173445', '#0c1924' ]
   data2 = data[year];
   populationdata2 = populationdata[year];
@@ -92,6 +93,10 @@ function UpdateMap(data, year){
         'G': '25 >'
     },
   });
+
+  d3.select("#worldmaptitle").append("text")
+        .attr("class", "worldtitle")
+        .text("Click on a country to select one");
 
 }
  
