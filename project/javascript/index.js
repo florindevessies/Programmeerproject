@@ -11,6 +11,8 @@ var countrycode;
 var year;
 var prevFill;
 var prevFillCircle;
+datasun = {};
+datasun["children"] = {};
 
 // Loading in data for the default year
 d3.json("project/data/data4.json", function(error, data){
@@ -121,7 +123,6 @@ handle.append('text')
 slider
   .call(brush.event)
 
-
 // updating the time slider
 function UpdateSlider(year) {
   d3.selectAll("#nodata").remove();
@@ -163,9 +164,7 @@ function UpdateSlider(year) {
 });
 
 function sunburstSelected (data, countrycode, year) {
-  datasun = {};
   datasun["name"] = year;
-  datasun["children"] = {};
   data5 = d3.values(populationdata[year]);
   datasun["children"] = data5;
   root = datasun;

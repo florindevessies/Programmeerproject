@@ -130,13 +130,17 @@ function drawScatterPlot(data, year) {
                .style("opacity", 0);
       })
       .on("click", function(d) {
-        
-        // worldmap
-        worldmapSelected(countrycode);
 
-        scatterplotSelected(countrycode);
+        d3.select("#sunburstsvg").remove();
+            populationdata2 = populationdata[year];
+            countrycode = d.countrycodes;
+            
+            // worldmap
+            worldmapSelected(countrycode);
 
-        drawpiechart(populationdata2, countrycode, year);
+            scatterplotSelected(countrycode);
+
+            drawpiechart(populationdata2, countrycode, year);
         });
 
       d3.select("#scatterplottitle").append("text")
