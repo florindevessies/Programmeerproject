@@ -2,7 +2,7 @@
 ## By Florinde Vessies, 10657738
 
 
-## Introduction. 
+## Introduction 
 Co2 emissions are one of the most terrible factors that contribute to the climate change and global warming. many different aspects supply this change, such as the growing urbanization in many countries. This urbanization also led to a enlargement of the energy consumption in many countries for example, again leading to a rise in CO2 emissions (Dhakal, 2010). In this visualization, the changes in CO2 emissions per capita and the percentages of people living in cities are shown from 1960 till 2013. In the scatterplot the correlation between these is shown for all countries of a certain year. In the sunburst visualization the sources of CO2 emissions can be seen for every country within a certain year.
 
 ADD SCREENSHOT

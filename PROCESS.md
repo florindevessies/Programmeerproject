@@ -137,3 +137,20 @@ Still to fix:
 * Readme.md
 * Licence ??? - fixed
 * bettercode hub
+
+### Day 19, thursday 02-02-2017
+holy shit, to do:
+
+* report
+* readme
+* introduction text - fixed
+* navbar - fixed
+* bettercode
+
+code:
+* sunburst - colors - fixed
+* sunburst - text
+* sunburst - center
+* sunburst - onhover show percentages
+* no data message piechart
+* 

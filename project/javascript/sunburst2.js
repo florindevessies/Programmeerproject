@@ -6,6 +6,7 @@ javascript sunburst
 
 *******************************************************/
 // based on the example of Mike Bostock, http://bl.ocks.org/mbostock/4348373 
+// http://bl.ocks.org/metmajer/5480307
 var arcTweenFunction;
 var computeTextRotationFunction;
 
@@ -42,9 +43,27 @@ function drawsunburst (dataSunburst, year, countryData) {
     return (x(d.x + d.dx / 2) - Math.PI / 2) / Math.PI * 180;
   }
 
-  var color = d3.scale.category20c();
+  var colorcountry = d3.scale.ordinal()
+    .range(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928']);
+var colorCO2 = d3.scale.ordinal()
+    .range(['#fbb4ae','#b3cde3','#ccebc5','#decbe4','#fed9a6']);
 
-  var sunsvg = d3.select("body").append("svg")
+// different color schemes based on depth in sunburst
+var color = function color(d) {
+    switch(d.depth) {
+      case 0:
+        return '#f0f7fa';
+        break;
+      case 1:
+          return colorcountry(d.name);
+          break;
+      case 2:
+          return colorCO2(d.name);
+          break;
+      }
+    }
+
+  var sunsvg = d3.select("#sunburst").append("svg")
       .attr("id", "sunburstsvg")
       .attr("width", "100%")
       .attr("height", sunheight)
@@ -66,7 +85,7 @@ function drawsunburst (dataSunburst, year, countryData) {
 
   var path = g.append("path")
     .attr("d", sunarc)
-    .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+    .style("fill", function(d) { return color(d); })
     .on("click", click);
 
   var text = g.append("text")

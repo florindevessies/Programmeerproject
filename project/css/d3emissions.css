@@ -5,7 +5,7 @@ CO2 emissions and urbanization
 General css
 
 *******************************************************/
-.jumbotron {
+/*.jumbotron {
   margin-bottom: 0;
   max-height: 150px;
   font-size: 18px;
@@ -13,8 +13,30 @@ General css
 
 #h1{
   font-size: 18px;
+}*/
+/***************************************
+navbar layout of index.html
+***************************************/
+.navbar {
+    margin-bottom: 0;
+    background-color: #ffffff;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
 }
 
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
 .bg-1 { 
   background-color: #474e5d; 
   color: #ffffff;
@@ -56,12 +78,19 @@ button{
 /*
 source layout
 */
-h2 {
+/*h2 {
 	font: 18px sans-serif;
 	 text-align: center;
 	 font-weight: bold;
-}
+}*/
 
+footer {
+  bottom:0;
+  margin:0;
+  width:100%;
+  height:70px;
+  background-color: #f2f2f2;
+}
 
 /***************************************
 worldmap layout
@@ -201,32 +230,9 @@ corresponding to emissionssunburst.js
     position: relative;
 }
 
-text[depth="0"][root="3"],text[depth="0"][root="2"],text[depth="0"][root="4"],text[depth="1"][root="3"],text[depth="1"][root="4"],text[depth="2"][root="4"],text[depth="0"][root="1"],text[depth="1"][root="2"],text[depth="2"][root="3"],text[depth="3"][root="4"] {
-  opacity:0 !important;
-  font-size:.5px !important;
-}
-text[depth="2"][root="0"] {
-  font-size:10px !important;
-}
-text[depth="2"][root="1"] {
-  font-size:8px !important;
-}
-/*g:hover, g text:hover{
-  cursor:pointer;
-}*/
-text[depth="0"] {
-  font-size: 20px !important;
-}
-text.isCenter,text[depth="0"][root="0"] {
-/*  transform:rotate(0) !important;*/
-  font-family:"Oswald",Helvetica, sans-serif !important;
-  font-weight:700;
+#sunburstsvg{
+  position: relative;
+  margin: auto;
+  left: 25%;
 }
 
-footer {
-  bottom:0;
-  margin:0;
-  width:100%;
-  height:60px;
-  background-color: #f2f2f2;
-}

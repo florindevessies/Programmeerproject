@@ -5,6 +5,7 @@ CO2 emissions and urbanization
 javascript scatterplot
 
 *******************************************************/
+// tooltip gathered from: http://bl.ocks.org/weiglemc/6185069
 function drawScatterPlot(data, year) {
     var prevFill;
     var prevFillCircle;
