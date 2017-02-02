@@ -109,19 +109,10 @@ function UpdateSlider(year) {
   drawpiechart(populationdata[year], countrycode, year);
 
   d3.select('.btn.btn-primary').on('click', function() {
-    datasun = {};
-    datasun["name"] = year;
-    datasun["children"] = {};
-    data5 = d3.values(populationdata[year]);
-    datasun["children"] = data5;
-    root = datasun;
-
-    // for (var i = 0; i < data5.length; i++){
-    //   if (data5[i]["countrycodes"] == countrycode) {
-    //     drawsunburst(datasun, year, data5[i]);
-    //   }
-    // }
-
+     $('html,body').animate({
+        scrollTop: $(".third").offset().top},
+        'slow');
+    sunburstselected(populationdata[year], countrycode, year);
   }); 
    
   if (d3.event.sourceEvent) {
@@ -133,13 +124,10 @@ function UpdateSlider(year) {
     drawpiechart(populationdata[year], countrycode, year);
 
   d3.select('.btn.btn-primary').on('click', function() {
-    datasun = {};
-    datasun["name"] = year;
-    datasun["children"] = {};
-    data5 = d3.values(populationdata[year]);
-    datasun["children"] = data5;
-    root = datasun;
-    drawsunburst(data[year], year, datasun);
+     $('html,body').animate({
+        scrollTop: $(".third").offset().top},
+        'slow');
+    sunburstselected(populationdata[year], countrycode, year)
   });
     // keep country selected in worldmap
     // if (prevFill) {
@@ -164,4 +152,25 @@ function UpdateSlider(year) {
 
 }
 });
+
+function sunburstselected (data, countrycode, year) {
+  datasun = {};
+  datasun["name"] = year;
+  datasun["children"] = {};
+  data5 = d3.values(populationdata[year]);
+  datasun["children"] = data5;
+  root = datasun;
+
+  if (countrycode == undefined) {
+    drawsunburst(data[year], year, datasun);
+  }
+  else {
+    for (var i = 0; i < data5.length; i++){
+      if (data5[i]["countrycodes"] == countrycode) {
+        console.log(data5[i]["countrycodes"]);
+        drawsunburst(datasun, year, data5[i]);
+      }
+    }
+  }
+}
 

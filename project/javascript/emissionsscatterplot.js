@@ -35,7 +35,7 @@ function drawScatterPlot(data, year) {
     .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
 
     // add the tooltip area to the webpage
-    var tooltip = d3.select("#scatterplot").append("div")
+    var tooltip = d3.select("body").append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
 
@@ -82,7 +82,6 @@ function drawScatterPlot(data, year) {
 
     // creating nodes for countries
     var country = scattersvg.selectAll("g.node").data(data, function (d) {
-        // console.log(d.name);
         if ((d.percentagecities != ".." && d.CO2percapita != "..")) {
                 return d.countrycodes;      
         }
@@ -115,12 +114,13 @@ function drawScatterPlot(data, year) {
         })
         .on("mouseover", function(d) {
           d3.select(this).attr("r", 10).style("opacity", 0.7);
-          // tooltip.transition()
-          //      .duration(200)
-          //      .style("opacity", .9);
-          // tooltip.html(d["location"])
-          //      .style("left", (d3.event.pageX + 5) + "px")
-          //      .style("top", (d3.event.pageY - 28) + "px");
+           tooltip.transition()
+               .duration(200)
+               .style("opacity", .9);
+          tooltip.html(d["name"] + "<br/>" + "CO2 emissions: " + (d.CO2percapita) 
+            + "<br/> " + "Urban population: " + (d.percentagecities) + "%")
+               .style("left", (d3.event.pageX + 15) + "px")
+               .style("top", (d3.event.pageY - 28) + "px");
       })
       .on("mouseout", function(d) {
           d3.select(this).attr("r", 5).style("opacity", 1);
@@ -141,7 +141,6 @@ function drawScatterPlot(data, year) {
             root = datasun;
             for (var i = 0; i < data4.length; i++){
                 if (data4[i]["countrycodes"] == countrycode) {
-                    console.log(data4[i]);
                     drawsunburst(datasun, year, data4[i]);
                 }
             }

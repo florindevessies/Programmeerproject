@@ -18,11 +18,11 @@ HTML
 
        <!-- Datamaps Source -->
         <script src="../javascript/datamaps.world.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="../css/d3emissions.css"/>
+        <link rel="stylesheet" type="text/css" href="css/d3emissions.css"/>
 
         <!-- Bostock's slider brush: http://bl.ocks.org/mbostock/6452972-->
         <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="../css/slider.css">        
+        <link rel="stylesheet" href="css/slider.css">        
         
 
         <!-- Bootstrap info -->
@@ -63,9 +63,13 @@ HTML
 
         <div class="container-fluid bg-3 text-center">    
             <div class = "row">
-                <div class="col-lg-12">
+                <div class="col-lg-10">
                     <div id ="slider"> </div>
-                </div>            
+                </div>     
+
+            <div class="col-lg-2">                
+                <button type="button" class="btn btn-primary">Draw sunburst</button>
+            </div>         
             </div>
         </div>
     
@@ -92,30 +96,20 @@ HTML
     </div>
     </div>
 
-    <div class="container-fluid bg-5 text-center">
-        <div class="row">
-            <div class="col-lg-2">                
-                <button type="button" class="btn btn-primary">Draw sunburst</button>
-            </div>  
-
+    <div class="third">
+        <div class="container-fluid bg-5 text-center">
             <div class="col-lg-10">
                 <div id ="sunburst"></div>
             </div> 
         </div>
-    </div>
-        
+    </div>        
 
-        <script src="../javascript/emissionssunburst.js"></script>
-        <script src="../javascript/d3emissions2.js"></script>    
-        <script src="../javascript/emissionsscatterplot.js"></script>
-        <script src="../javascript/emissionsworldmap.js"></script>
-        <script src="../javascript/emissionspiechart.js"></script>    
+        <script src="javascript/sunburst2.js"></script>
+        <script src="javascript/index.js"></script>    
+        <script src="javascript/emissionsscatterplot.js"></script>
+        <script src="javascript/emissionsworldmap.js"></script>
+        <script src="javascript/emissionspiechart.js"></script>    
 
-        <div id="tooltip" class="hidden">
-            <p><strong>Percentage of inhabitants</strong>
-    </p>
-    <p><span id="value">100</span>%</p>
-</div>
 
     <footer class="container-fluid text-center">
         <h6>By Florinde Vessies, 10657738</h6> 

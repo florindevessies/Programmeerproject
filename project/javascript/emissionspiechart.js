@@ -31,6 +31,11 @@ function drawpiechart (populationdata, id, year) {
     .append("g")
       .attr("transform", "translate(" + piewidth / 1.75 + "," + pieheight / 2 + ")");
 
+  // add the tooltip area to the webpage
+  var tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
   if (populationdata[countrycode] === undefined || populationdata[countrycode] === null) {
     d3.selectAll(".piearc").remove();
     d3.selectAll(".svg").remove();  
@@ -65,22 +70,22 @@ function drawpiechart (populationdata, id, year) {
       var g = piesvg.selectAll(".piearc")
           .data(pie(node))
         .enter().append("g")
-          .attr("class", "piearc")
-          .on("mouseover", function (d) {
-            // var total = d3.sum(dataset.map(function(d) {              // NEW
-            //   return d.count;                                           // NEW
-            // }));                                                        // NEW
-            // var percent = Math.round(1000 * d.data.count / total) / 10; // NEW
-            // tooltip.select('.label').html(d.data.label);                // NEW
-            // tooltip.select('.count').html(d.data.count);                // NEW
-            // tooltip.select('.percent').html(percent + '%');             // NEW
-            // tooltip.style('display', 'block');                          // NEW
-          })                                    
-        .on("mouseout", function () {
-        // Hide the tooltip
-        d3.select("#tooltip")
+        .attr("class", "piearc")
+        .on("mouseover", function(d) {
+          d3.select(this).attr("r", 10).style("opacity", 0.7);
+          tooltip.transition()
+            .duration(200)
+            .style("opacity", .9);
+          tooltip.html("Part of population: " + (d.value) + "%")
+            .style("left", (d3.event.pageX + 15) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function(d) {
+          d3.select(this).attr("r", 5).style("opacity", 1);
+          tooltip.transition()
+            .duration(500)
             .style("opacity", 0);
-    });
+      });
 
       g.append("path")
           .attr("d", piearc)

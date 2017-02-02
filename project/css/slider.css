@@ -1,8 +1,11 @@
-body {
-  background-color: #393939;
-  font-size: 14px;
-  font-family: 'Raleway', sans-serif;
-}
+/******************************************************
+Programmeerproject
+Florinde Vessies, 10657738
+CO2 emissions and urbanization
+css of slider. based on:
+Bostock's slider brush: http://bl.ocks.org/mbostock/6452972
+
+*******************************************************/
 
 p {
   color: white;
@@ -14,27 +17,28 @@ a {
 }
 
 .axis {
-  fill: gray;
+  fill: black;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
 }
 
 .axis .halo {
-  stroke: gray;
+  stroke: white;
   stroke-width: 4px;
   stroke-linecap: round;
+  font-family: sans-serif;
 }
 
 .slider .handle path {
   stroke: black;
-  stroke-width: 3px;
+  stroke-width: 2.5px;
   stroke-linecap: round;
   pointer-events: none;
 }
 
 .slider .handle text {
-  fill: black;
+  fill: white;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
 }

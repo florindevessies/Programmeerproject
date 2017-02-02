@@ -1,12 +1,10 @@
 /******************************************************
-Data Processing
-week 7
+Programmeerproject
 Florinde Vessies, 10657738
-LinkedViews
-javascript
+CO2 emissions and urbanization
+General css
 
 *******************************************************/
-
 .jumbotron {
   margin-bottom: 0;
   max-height: 150px;
@@ -34,7 +32,7 @@ javascript
 
 .bg-4 { 
     background-color: #ffffff; 
-    color: #555555;
+    color: #000000;
 }
 
 .bg-5 { 
@@ -48,6 +46,11 @@ javascript
     margin:0;
     padding:0;
     border: 0;
+}
+
+button{
+  position:relative;  
+  top:60px; 
 }
 
 /*
@@ -78,7 +81,7 @@ Legend layout
     margin-left: 440px;
     top: 420px;
     font-size: 12px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 /***************************************
@@ -161,7 +164,7 @@ corresponding to emissionsscatterplot.js
 scatterplot layout
 */
 .tooltip {
-  position: relative;
+  position: absolute;
   width: 200px;
   height: 28px;
   pointer-events: none;
@@ -169,23 +172,21 @@ scatterplot layout
 
 text {
     font-size: 12px;
-    font: sans-serif;
+    font-family: sans-serif;
 }
 
 .xtext{
   font: sans-serif;
 }
 
-g.y.axis {
+g.y.axis path{
   fill: none;
   stroke: #000;
-  shape-rendering: crispEdges;
 }
 
-g.x.axis {
+g.x.axis path {
   fill: none;
   stroke: #000;
-  shape-rendering: crispEdges;
 }
 
 .node {

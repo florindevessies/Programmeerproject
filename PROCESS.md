@@ -113,6 +113,27 @@ questions:
 * if worldmap is clicked, scroll down - fixed
 * css cleaning - fixed
 * random errors: drawscatterplot is not defined - Sacha says I don't need to fix that
-*
 
 report time.
+
+### Day 18, wednesday 01-02-2017
+Still to fix:
+* sunburst on click for a selected country - fixed
+* sunburst button and scroll next to slider - fixed
+* Sunburst titles and colors
+* piechart  - sort of fixed
+* Scatterplot tooltip - fixed
+* No data available message not showing when no country is selected yet
+* Selected circles - larger and different colors
+* general introduction
+* layout slider - partly fixed
+* scrolling with two fingers??? - fixed
+* after selecting one country, popuptemplate is not working anymore
+* title of piechart to small
+* weird stuff with certain text - fixed
+* center sunburst in middle of div
+
+* Report.md
+* Readme.md
+* Licence ??? - fixed
+* bettercode hub
