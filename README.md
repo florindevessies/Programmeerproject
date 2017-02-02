@@ -1,21 +1,24 @@
-## Programmeerproject
+## Programmeerproject - The relationship between CO2 emissions and urbanization
 #Data visualisation by Florinde Vessies, 10657738
 
 
-In this visualization, data will be presented based on the CO2 emissions per country over several years. For the user it will be visible what that CO2 percentages were spend on, varying from transport to electricity. In another visualization it is shown how many people live in cities or in the rural areas per country. 
- 
-All data will be gathered from [worldbank.org](http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators#). For each country, several indicators are chosen. In each of the different visualizations, different types of information are shown.
+## Introduction 
+Co2 emissions are one of the most terrible factors that contribute to the climate change and global warming. many different aspects supply this change, such as the growing urbanization in many countries. This urbanization also led to a enlargement of the energy consumption in many countries for example, again leading to a rise in CO2 emissions (Dhakal, 2010). In this visualization, the changes in CO2 emissions per capita and the percentages of people living in cities are shown from 1960 till 2013. In the scatterplot the correlation between these is shown for all countries of a certain year. In the sunburst visualization the sources of CO2 emissions can be seen for every country within a certain year. 
 
-### Visualization 1 - Scatterplot
-To start with, a scatterplot will be shown where the CO2 emissions of countries is places against the urbanization on the x axis. All countries will be shown over here for one year. By clicking on a dot, a country can be selected. In the visualization below, The United States are selected. Using a hover over, the name of the country plus the urbanization and CO2 emissions will be shown. When a dot gets clicked, this country will light up in the worldmap and sunburst as well.  
+### Visualisation 1 - The worldmap
+The world map shows the CO2 emissions per country in metric tons per capita. The map is colored according to the emissions for the countries: the higher the emissions, the darker the color on the map. The default map shows the information of the year 1960. In this way, the user can slide towards the most recent year and see how these emissions have grown in time. When hovering over the map, the user is prompted with a tooltip that described the number of inhabitants of the country and the actual CO2 emissions of the country. When a country is selected (clicked on), the pages scrolls to the next visualizations: the scatterplot and the worldmap. 
 
-![Image world map ](/doc/worldmapscatterplot.jpg)
+### Visualization 2 - Scatterplot
+In the scatterplot, the CO2 emissions of countries is places against the urbanization on the x axis. All countries are shown here for the selected year. When the time slider changes to another year, the scatterplot updates to the data of the selected year. The country that is selected on the worldmap is shown differently than the other countries (thus highlighted). When hovering over the map, the user can see which country the dots correspond to and what the values of CO2 emissions and urban inhabitants are. Clicking on a dot will change the information in the pie chart based on the country it is linked to. 
 
-### Visualisation 2 - The worldmap
-The world map will show the CO2 emissions per country in metric tons per capita. The map will be coloured according to this information.  Since the information about CO2 emissions is usually not available for the recent years (2014 to 2016), the default map will show the year 2013. The user can scroll backwards into time to see the emissions of the preceeding years. The scatterplot will change based on the years as well. 
+![Image world map ](/doc/scatterpie.png)
 
-### Visualisation 3 - The sunburst
-The sunburst will show the sources of the emissions per country. Not all countries have data available for this, so it will not be entirely complete. However, I can also visualize the following CO2 emission datapoints. The thing is though that these are not as abundant as the information about solid, liquid and gaseous fuel, so I'm not sure this is manageable. It consists of the following emissions:
+### Visualization 3 - The pie chart
+The pie chart is the third visualization and shows the percentage of inhabitants of a country that lives in cities or in rural areas. The information especially becomes interesting when using the time slider: In this way the changes over years  and the growing urbanization of many countries are easy to see. The pie chart has a tooltip that shows the actual percentages that correspond to the pie sizes.
+
+
+### Visualisation 4 - The sunburst
+The sunburst shows the sources of the emissions per country. the following sources were used:
 
 * Manufacturing industries and construction
 * Residential buildings and commercial and public services
@@ -23,10 +26,20 @@ The sunburst will show the sources of the emissions per country. Not all countri
 * Electricity and heat production
 * Other sectors
 
-These consist of percentages and are therefore easy to use in the sunburst. 
+ When no particular country is selected the sunburst will show the emissions for every country scaled on the emissions: for the year 1960, Luxembourg is the country that produces the largest emissions. Therefore, it is show with the largest piece in the sunburst as well. If a country gets selected on the worldmap and the 'draw sunburst' button is clicked, the sunburst will automatically show the data for the selected country only. However, by clicking on the most inner circle, the user can still see the information for all countries. When there is no data available for the sources of the emissions, the entire outer circle is filled with 'no data'. 
 
-![Image total](/doc/complete.jpg)
+![Image total](/doc/sunburst1960.png)
 
+### Time slider
+As mentioned before, a time slider that can slide through the selected years is used to connect the different visualization. I've chosen this slider to show the changes over time for both the CO2 emissions and the urbanization, and the relation between these two. 
 
-### Interactive components
-The first interactive component of this visualization will consist of a slider through the years to show the change in CO2 emissions and urbanizations. Hopefully this will show a correlation. The second one is the pie chart that shows the percentages of people living in rural areas, cities and slums. This will be visualized next to the graph with the CO2 emissions.
+#### Sources
+All data was gathered from [worldbank.org](http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators#). For visualizations, the following sources were used: 
+
+* [worldmap](https://datamaps.github.io/ "Worldmap")
+* [piechart](https://bl.ocks.org/mbostock/3887235 "Pie chart")
+* [scatterplot](https://jsfiddle.net/eamonnmag/Q567s/ "Scatterplot")
+* [sunburst](http://bl.ocks.org/mbostock/4348373 "Sunburst")
+* [slider](http://bl.ocks.org/zanarmstrong/ddff7cd0b1220bc68a58 "Time slider")
+* [tooltip]( http://bl.ocks.org/weiglemc/6185069 "Tooltip")
+* [layout]( http://www.w3schools.com/bootstrap/bootstrap_templates.asp "Layout")
