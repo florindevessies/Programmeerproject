@@ -5,7 +5,6 @@ CO2 emissions and urbanization
 javascript scatterplot
 
 *******************************************************/
-// tooltip gathered from: http://bl.ocks.org/weiglemc/6185069
 
 var scatterwidth = 480;
 var scatterheight= 450;
