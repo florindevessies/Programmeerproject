@@ -135,7 +135,7 @@ function UpdateSlider(year) {
      $('html,body').animate({
         scrollTop: $(".third").offset().top},
         'slow');
-    sunburstselected(populationdata[year], countrycode, year);
+    sunburstSelected(populationdata[year], countrycode, year);
   }); 
    
   if (d3.event.sourceEvent) {
@@ -150,23 +150,9 @@ function UpdateSlider(year) {
      $('html,body').animate({
         scrollTop: $(".third").offset().top},
         'slow');
-    sunburstselected(populationdata[year], countrycode, year)
+    sunburstSelected(populationdata[year], countrycode, year)
   });
-    // keep country selected in worldmap
-    // if (prevFill) {
-    //       d3.select(selectorCountry).style("fill", prevFill);
-    //     }
-    //     selectorCountry = "." + countrycode;
-    //     prevFill = d3.select(selectorCountry).style("fill")
-    //     d3.select(selectorCountry).style("fill", "000000");
 
-    // if (prevFillCircle) {
-    //       d3.select(IDcountry).style("fill", prevFillCircle);
-    //     }
-
-    //     IDcountry = "#" + countrycode;
-    //     prevFillCircle = d3.select(IDcountry).style("fill");
-    //     d3.select(IDcountry).style("fill", "000000");
     brush.extent([value, value]);
   }
 
@@ -176,7 +162,7 @@ function UpdateSlider(year) {
 }
 });
 
-function sunburstselected (data, countrycode, year) {
+function sunburstSelected (data, countrycode, year) {
   datasun = {};
   datasun["name"] = year;
   datasun["children"] = {};
@@ -228,3 +214,5 @@ function worldmapSelected(countrycode) {
     
   d3.select(selectorCountry).style("fill", "000000");
 }
+
+

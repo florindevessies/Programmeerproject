@@ -145,12 +145,13 @@ holy shit, to do:
 * readme
 * introduction text - fixed
 * navbar - fixed
-* bettercode
+* bettercode - somewhat fixed
+* online available - fixed
 
 code:
 * sunburst - colors - fixed
-* sunburst - text
-* sunburst - center
+* sunburst - text - fixed
+* sunburst - center - fixed
 * sunburst - onhover show percentages
 * no data message piechart
 * 

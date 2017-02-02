@@ -130,27 +130,13 @@ function drawScatterPlot(data, year) {
                .style("opacity", 0);
       })
       .on("click", function(d) {
+        
+        // worldmap
+        worldmapSelected(countrycode);
 
-        d3.select("#sunburstsvg").remove();
-            populationdata2 = populationdata[year];
-            countrycode = d.countrycodes;
-            datasun = {}            
-            datasun["name"] = year;
-            datasun["children"] = {}
-            data4 = d3.values(populationdata[year]);
-            datasun['children'] = data4;
-            root = datasun;
-            for (var i = 0; i < data4.length; i++){
-                if (data4[i]["countrycodes"] == countrycode) {
-                    drawsunburst(datasun, year, data4[i]);
-                }
-            }
-            
-            // worldmap fill
-            worldmapSelected(countrycode);
+        scatterplotSelected(countrycode);
 
-            // color country in scatterplot
-            scatterplotSelected(countrycode);
+        drawpiechart(populationdata2, countrycode, year);
         });
 
       d3.select("#scatterplottitle").append("text")

@@ -45,11 +45,11 @@ function drawsunburst (dataSunburst, year, countryData) {
 
   var colorcountry = d3.scale.ordinal()
     .range(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928']);
-var colorCO2 = d3.scale.ordinal()
+  var colorCO2 = d3.scale.ordinal()
     .range(['#fbb4ae','#b3cde3','#ccebc5','#decbe4','#fed9a6']);
 
-// different color schemes based on depth in sunburst
-var color = function color(d) {
+  // different color schemes based on depth in sunburst
+  var color = function color(d) {
     switch(d.depth) {
       case 0:
         return '#f0f7fa';
@@ -116,6 +116,7 @@ var color = function color(d) {
       });
   }
 
-d3.select(self.frameElement).style("height", sunheight + "px");
+  d3.select(self.frameElement).style("height", sunheight + "px");
+  click(countryData);
 
 }
