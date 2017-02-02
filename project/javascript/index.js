@@ -197,3 +197,34 @@ function sunburstselected (data, countrycode, year) {
   }
 }
 
+// function that selects the country in the scatterplot 
+// and changes the color back when another country gets selected
+function scatterplotSelected (countrycode) {
+  if (prevFillCircle) {
+    d3.select(IDcountry).style("fill", prevFillCircle);
+  }
+
+  IDcountry = "#" + countrycode;
+  if(!d3.select(IDcountry).empty()){
+    if (d3.select(IDcountry).style("fill")) {
+      prevFillCircle = d3.select(IDcountry).style("fill");
+    };
+  d3.select(IDcountry).style("fill", "000000");
+  }
+}
+
+// function that selects the country in the worldmap 
+// and changes the color back when another country gets selected
+function worldmapSelected(countrycode) {
+  if (prevFill) {
+      d3.select(selectorCountry).style("fill", prevFill);
+    }
+  selectorCountry = "." + countrycode;
+  if(!d3.select(selectorCountry).empty()){
+      if (d3.select(selectorCountry).style("fill")) {
+          prevFill = d3.select(selectorCountry).style("fill");
+      };
+  }
+    
+  d3.select(selectorCountry).style("fill", "000000");
+}

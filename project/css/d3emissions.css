@@ -5,15 +5,7 @@ CO2 emissions and urbanization
 General css
 
 *******************************************************/
-/*.jumbotron {
-  margin-bottom: 0;
-  max-height: 150px;
-  font-size: 18px;
-} 
 
-#h1{
-  font-size: 18px;
-}*/
 /***************************************
 navbar layout of index.html
 ***************************************/
@@ -74,15 +66,6 @@ button{
   position:relative;  
   top:60px; 
 }
-
-/*
-source layout
-*/
-/*h2 {
-	font: 18px sans-serif;
-	 text-align: center;
-	 font-weight: bold;
-}*/
 
 footer {
   bottom:0;
@@ -171,8 +154,6 @@ slider.cs
 #slider {
   bottom: 20px;
 }
-
-
 
 /***************************************
 scatterplot layout

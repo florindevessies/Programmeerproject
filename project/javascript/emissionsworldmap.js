@@ -7,7 +7,6 @@ javascript world map update
 *******************************************************/
 var prevFill;
 var prevFillCircle;
-datasun = {};  
 
 // function that draws the map, and updates it if called again
 function UpdateMap(data, year){
@@ -22,35 +21,22 @@ function UpdateMap(data, year){
     // Events for binding the map to the pie chart
     done: function DrawMap(datamap) {
       datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography){
-         $('html,body').animate({
-        scrollTop: $(".second").offset().top},
+        // animate to the next visualizations
+        $('html,body').animate({
+          scrollTop: $(".second").offset().top},
         'slow');
         countrycode = geography.id;
         
         // filling that country in the scatterplot
-        if (prevFillCircle) {
-          d3.select(IDcountry).style("fill", prevFillCircle);
-        }
-
-        IDcountry = "#" + countrycode;
-        if(!d3.select(IDcountry).empty()){
-          if (d3.select(IDcountry).style("fill")) {
-              prevFillCircle = d3.select(IDcountry).style("fill");
-          };
-          d3.select(IDcountry).style("fill", "000000");
-        }
-        
-        // add drawpiechart function here
-        countrycode = geography.id;
-        drawpiechart(populationdata2, countrycode, year);
+        scatterplotSelected(countrycode);
 
         // coloring the country that is selected  in the map and removing that selection when another country is clicked
-        if (prevFill) {
-          d3.select(selectorCountry).style("fill", prevFill);
-        }
-        selectorCountry = "." + countrycode;
-        prevFill = d3.select(selectorCountry).style("fill")
-        d3.select(selectorCountry).style("fill", "000000")
+        worldmapSelected(countrycode);
+        
+        // draw the piechart
+        drawpiechart(populationdata2, countrycode, year);
+
+        
       });
     },
     scope: 'world',
@@ -74,13 +60,7 @@ function UpdateMap(data, year){
           return '<div class="hoverinfo">' + '<strong>' +  geography.properties.name + '</strong>' + '<br/>' +
           'No data' +  '</div>';
         }
-        if (prevFill) {
-          d3.select(selectorCountry).style("fill", prevFill);
-        }
-        selectorCountry = "." + countrycode;
-        prevFill = d3.select(selectorCountry).style("fill")
-
-        d3.select(selectorCountry).style("fill", "000000")
+        worldmapSelected(countrycode);
       }
     },
     // fills for the data based on category (fillText)

@@ -146,28 +146,11 @@ function drawScatterPlot(data, year) {
                 }
             }
             
-            if (prevFill) {
-              d3.select(selectorCountry).style("fill", prevFill);
-            }
-            selectorCountry = "." + countrycode;
-            if(!d3.select(selectorCountry).empty()){
-                if (d3.select(selectorCountry).style("fill")) {
-                    prevFill = d3.select(selectorCountry).style("fill");
-                };
-            }
-            
-            d3.select(selectorCountry).style("fill", "000000");
+            // worldmap fill
+            worldmapSelected(countrycode);
 
             // color country in scatterplot
-            if (prevFillCircle) {
-                d3.select(IDcountry).style("fill", prevFillCircle);
-            }
-
-            IDcountry = "#" + countrycode;
-            prevFillCircle = d3.select(IDcountry).style("fill");
-            d3.select(IDcountry).style("fill", "000000");
-
-            drawpiechart(populationdata2, countrycode, year);
+            scatterplotSelected(countrycode);
         });
 
       d3.select("#scatterplottitle").append("text")
