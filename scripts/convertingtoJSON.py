@@ -85,18 +85,17 @@ def AddSunBurstVariables(year, countrycode, seriesname, value):
 
 def AddExtraVariables(year, countrycode, seriesname, value):           
     # other variables
-    if seriesname == "GDP per capita (current US$)" and 'GDPpercapita' not in data[year][countrycode]: 
+    if seriesname == "GDP per capita (current US$)": 
         data[year][countrycode]['GDPpercapita'] = value
-    if seriesname == "Population, total" and 'inhabitants' not in data[year][countrycode]: 
+    if seriesname == "Population, total": 
         data[year][countrycode]['inhabitants'] = value
-    if seriesname == "Urban population (% of total)" and 'percentagecities' not in data[year][countrycode]: 
+    if seriesname == "Urban population (% of total)": 
         data[year][countrycode]['percentagecities'] = value
     if seriesname == "CO2 emissions (metric tons per capita)": 
-        if 'CO2percapita' not in data[year][countrycode]:
-            if value != "..":
-                data[year][countrycode]['CO2percapita'] = format(float(value), '.3f')
-            else:
-                data[year][countrycode]['CO2percapita'] = value
+        if value != "..":
+            data[year][countrycode]['CO2percapita'] = format(float(value), '.3f')
+        else:
+            data[year][countrycode]['CO2percapita'] = value
 
 
 
@@ -118,9 +117,6 @@ def addDataTodict(year, countrycode, location, seriesname, value):
     AddPieChartVariables(year, countrycode, seriesname, value)
     AddSunBurstVariables(year, countrycode, seriesname, value)
     AddExtraVariables(year, countrycode, seriesname, value)
-
-
-
 
 # making an array with all the years of the dataset
 years = []
