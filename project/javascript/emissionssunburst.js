@@ -91,12 +91,11 @@ var color = function color(d) {
   var text = g.append("text")
     .attr("transform", function(d) { return "rotate(" + computeTextRotationFunction(d) + ")"; })
     .attr("x", function(d) { return y(d.y); })
-    .attr("dx", "6") // margin
-    .attr("dy", ".35em") // vertical-align
+    .attr("dx", "6")
+    .attr("dy", ".35em")
     .text(function(d) { return d.name; });
 
   function click(d) {
-    console.log(d);
     // fade out all text elements
     text.transition().attr("opacity", 0);
 

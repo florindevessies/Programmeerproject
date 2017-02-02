@@ -13,7 +13,7 @@ var prevFill;
 var prevFillCircle;
 
 // Loading in data for the default year
-d3.json("../data/data4.json", function(error, data){
+d3.json("project/data/data4.json", function(error, data){
   if (error) throw error;
    populationdata = data;
   
