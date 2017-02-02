@@ -69,7 +69,7 @@ function drawpiechart (populationdata, id, year) {
         .enter().append("g")
         .attr("class", "piearc")
         // on mouseover, show info
-        .on("mouseover", function(d) {
+        .on("mouseover", function mouseover (d) {
           d3.select(this).attr("r", 10).style("opacity", 0.7);
           tooltip.transition()
             .duration(200)
@@ -78,7 +78,7 @@ function drawpiechart (populationdata, id, year) {
             .style("left", (d3.event.pageX + 15) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
         })
-        .on("mouseout", function(d) {
+        .on("mouseout", function mouseout(d) {
           d3.select(this).attr("r", 5).style("opacity", 1);
           tooltip.transition()
             .duration(500)

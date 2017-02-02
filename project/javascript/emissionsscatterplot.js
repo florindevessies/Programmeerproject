@@ -88,10 +88,8 @@ function drawScatterPlot(data, year) {
    var countryGroup = country.enter().append("g").attr("class", "node")
      .attr('transform', function (d) {
         if (!((d.percentagecities == "..") || (d.CO2percapita == ".."))) {
-            if (d.name != "Namibia"){
-                d3.select("#scatterplot").selectAll("node").remove();
-                    return "translate(" + x(parseFloat(d.percentagecities)) + "," + y(parseFloat(d.CO2percapita)) + ")";
-                }
+          d3.select("#scatterplot").selectAll("node").remove();
+              return "translate(" + x(parseFloat(d.percentagecities)) + "," + y(parseFloat(d.CO2percapita)) + ")";
         }
     });
 
@@ -103,11 +101,7 @@ function drawScatterPlot(data, year) {
             return d.countrycodes;
         })
         .style("fill", function (d) {
-            if (!((d.percentagecities == "..") || (d.CO2percapita == ".."))) {
-                if (d.name != "Namibia"){
-                    return colors(d.fillKey);
-                }
-            }
+          return colors(d.fillKey);
         })
         .on("mouseover", function(d) {
           d3.select(this).attr("r", 10).style("opacity", 0.7);
@@ -129,7 +123,7 @@ function drawScatterPlot(data, year) {
 
         d3.select("#sunburstsvg").remove();
         populationdata2 = populationdata[year];
-        countrycode = d.countrycodes;  
+        countrycode = d.countrycodes;
 
         // show border on worldmap
         worldmapSelected(countrycode);
