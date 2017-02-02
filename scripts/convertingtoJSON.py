@@ -85,8 +85,6 @@ def AddSunBurstVariables(year, countrycode, seriesname, value):
 
 def AddExtraVariables(year, countrycode, seriesname, value):           
     # other variables
-    if seriesname == "GDP per capita (current US$)": 
-        data[year][countrycode]['GDPpercapita'] = value
     if seriesname == "Population, total": 
         data[year][countrycode]['inhabitants'] = value
     if seriesname == "Urban population (% of total)": 
